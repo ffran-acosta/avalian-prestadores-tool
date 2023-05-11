@@ -11,5 +11,5 @@ app.listen(port, start)
 import { indexRoute } from './routes';
 app.use(indexRoute)
 
-import { dbRoute } from './routes';
-app.use(dbRoute)
+import { userRoute } from './routes';
+app.use('/api', userRoute)
