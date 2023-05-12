@@ -5,7 +5,7 @@ import { localDb } from '../database';
 import { User } from '../models';
 
 
-export const controller = {
+export const userController = {
 
     getUsers : async (_req: Request, res: Response) => {
         try {
@@ -70,35 +70,6 @@ export const controller = {
         }
     }
 }
-
-
-
-
-// import jwt from 'jsonwebtoken';
-// const secretKey = 'your-secret-key'; // Replace with your own secret key
-// 
-// login: async (req: Request, res: Response) => {
-//     try {
-//         const { name, password } = req.body;
-//         // Check if the user exists in the database
-//         const user: User | null = await localDb.oneOrNone('SELECT * FROM users WHERE name = $1', name);
-//         if (!user) {
-//             return res.status(404).json({ error: 'User not found' });
-//         }
-//         // Verify the password
-//         const passwordMatch = await bcrypt.compare(password, user.password);
-//         if (!passwordMatch) {
-//             return res.status(401).json({ error: 'Invalid password' });
-//         }
-//         // Generate a JWT token
-//         const token = jwt.sign({ id: user.id, email: user.name }, secretKey, { expiresIn: '1h' });
-//         // Return the token to the client
-//         res.json({ token });
-//     } catch (error) {
-//         console.error('Error during login:', error);
-//         res.status(500).json({ error: 'Failed to login' });
-//     }
-// }}
 
 
 

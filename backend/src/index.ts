@@ -12,4 +12,5 @@ import { indexRoute } from './routes';
 app.use(indexRoute)
 
 import { userRoute } from './routes';
-app.use('/api', userRoute)
+app.use('/users', userRoute)
+
