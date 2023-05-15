@@ -22,13 +22,17 @@ export const authController = {
             }
             // Generate a JWT token with a self-generated secret key
             const jwtSecret = generateJwtSecret();
-            const token = jwt.sign({ id: user.id }, jwtSecret, { expiresIn: '1h' });
+            const token = jwt.sign({ id: user.id }, jwtSecret, { expiresIn: 60 * 60 * 24 });
             // Return the token to the client
             res.json({ token });
         } catch (error) {
             console.error('Error during login:', error);
             res.status(500).json({ error: 'Failed to login' });
         }
+    },
+
+    profile: async (req: Request, res: Response) => {
+        return res.json('soy el perfil')
     },
 
     logout: async (_req: Request, res: Response) => {
