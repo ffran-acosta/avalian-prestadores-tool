@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+
 import { User } from '../models';
 import { localDb } from '../database';
-import { generateJwtSecret } from '../utils/jwtSecret';
+
+import jwt from 'jsonwebtoken';
+import { comparePasswords, generateJwtSecret } from '../utils';
 
 export const authController = {
 
@@ -16,15 +17,16 @@ export const authController = {
                 return res.status(404).json({ error: 'User not found' });
             }
             // Compare the provided password with the stored hash
-            const passwordMatch = await bcrypt.compare(password, user.password);
+            const passwordMatch = await comparePasswords(password, user.password);
             if (!passwordMatch) {
                 return res.status(401).json({ error: 'Invalid password' });
             }
             // Generate a JWT token with a self-generated secret key
             const jwtSecret = generateJwtSecret();
-            const token = jwt.sign({ id: user.id }, jwtSecret, { expiresIn: 60 * 60 * 24 });
+            const token: string = jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
             // Return the token to the client
-            res.json({ token });
+            // res.header('auth-token', token).json({ user, token });
+            res.json({ user, token })
         } catch (error) {
             console.error('Error during login:', error);
             res.status(500).json({ error: 'Failed to login' });
@@ -32,6 +34,7 @@ export const authController = {
     },
 
     profile: async (req: Request, res: Response) => {
+        
         return res.json('soy el perfil')
     },
 

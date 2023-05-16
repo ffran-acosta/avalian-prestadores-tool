@@ -5,8 +5,8 @@ import { authController, userController } from '../controller';
 import { reqAuth } from '../middleware';
 
 // auth login
-router.post('/login', authController.login)
-router.get('/profile', reqAuth, authController.profile)
+router.post('/auth/login', authController.login)
+router.get('/auth/profile', reqAuth, authController.profile)
 
 // crud
 router.get('/all', userController.getUsers);

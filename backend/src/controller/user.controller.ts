@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
 
 import { localDb } from '../database';
 import { User } from '../models';
 
+import { encryptPassword } from '../utils';
 
 export const userController = {
 
@@ -31,7 +31,7 @@ export const userController = {
     createUser: async (req: Request, res: Response) => {
         try {
             const { name, password, email } = req.body;
-            const hashedPassword = await bcrypt.hash(password, 10);
+            const hashedPassword = await encryptPassword(password)
             const newUser: User = { name: name, password: hashedPassword, email: email };            
             const result = await localDb.one('INSERT INTO users(name, password, email) VALUES($1, $2, $3) RETURNING id', [
                 newUser.name,
