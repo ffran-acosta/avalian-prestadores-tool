@@ -1,10 +1,10 @@
-import './App.css'
+import { LoginPage } from './pages'
 
 function App() {
 
   return (
     <div>
-      <h1>FRONTEND ON</h1>
+      <LoginPage />
     </div>
   )
 }

@@ -23,7 +23,7 @@ export const authController = {
             }
             // Generate a JWT token with a self-generated secret key
             const jwtSecret = generateJwtSecret();
-            const token: string = jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
+            const token: string = await jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
             // Return the token to the client
             // res.header('auth-token', token).json({ user, token });
             res.json({ user, token })

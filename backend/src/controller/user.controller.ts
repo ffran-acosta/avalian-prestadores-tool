@@ -7,7 +7,7 @@ import { encryptPassword } from '../utils';
 
 export const userController = {
 
-    getUsers : async (_req: Request, res: Response) => {
+    getUsers: async (_req: Request, res: Response) => {
         try {
             const users = await localDb.any('SELECT * FROM users');
             res.json(users);
@@ -32,7 +32,7 @@ export const userController = {
         try {
             const { name, password, email } = req.body;
             const hashedPassword = await encryptPassword(password)
-            const newUser: User = { name: name, password: hashedPassword, email: email };            
+            const newUser: User = { name: name, password: hashedPassword, email: email };
             const result = await localDb.one('INSERT INTO users(name, password, email) VALUES($1, $2, $3) RETURNING id', [
                 newUser.name,
                 newUser.password,
