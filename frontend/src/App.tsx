@@ -1,14 +1,17 @@
 import { Navbar } from './components'
-import { LoginPage } from './pages'
+import { LoginPage, RegisterPage } from './pages';
 import './index.css';
 
-function App() {
+
+const App: React.FC = () => {
 
   return (
-    <div>
-      <Navbar/>
+    <>
+      <Navbar />
       <LoginPage />
-    </div>
+      <RegisterPage />
+    </>
+
   )
 }
 
