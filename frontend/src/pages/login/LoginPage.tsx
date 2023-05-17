@@ -1,6 +1,5 @@
 import { loginRequest } from "../../services"
 
-
 const LoginPage = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -8,7 +7,6 @@ const LoginPage = () => {
         const name = (e.currentTarget.elements[0] as HTMLInputElement).value
         const password = (e.currentTarget.elements[1] as HTMLInputElement).value
         const response = await loginRequest(name, password)
-        console.log(name, password);
         console.log(response);
     }
 

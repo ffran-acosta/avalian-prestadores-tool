@@ -5,7 +5,9 @@ const app = express();
 app.use(express.json())
 
 import cors from 'cors'
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:4000'
+}))
 
 // SERVER HOST
 import { port, start } from './modules';
