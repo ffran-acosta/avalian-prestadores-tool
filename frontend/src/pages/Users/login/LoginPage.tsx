@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { loginRequest } from '../../../services';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -23,11 +24,6 @@ const Login: React.FC = () => {
         console.log('Logging in...');
     };
 
-    const handleRegister = () => {
-        // Handle register logic here
-        console.log('Registering...');
-    };
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const name = (event.currentTarget.elements[0] as HTMLInputElement).value
@@ -37,7 +33,7 @@ const Login: React.FC = () => {
     }
 
     return (
-        <div className="max-w-md mx-auto mt-8 bg-white p-6 rounded-md shadow-md">
+        <div className="max-w-md mx-auto mt-20 bg-gray-100 p-6 rounded-md shadow-md">
             <h2 className="text-2xl font-medium text-center mb-6">LOGIN</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
@@ -60,10 +56,10 @@ const Login: React.FC = () => {
                     </button>
                 </div>
                 <div className="flex justify-between items-center">
-                    <span className="text-sm">No tenes cuenta?</span>
-                    <button onClick={handleRegister} className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-md text-sm font-medium">
-                        Register
-                    </button>
+                    <span className="text-sm">No tenes cuenta?</span>                   
+                    <Link to='/singup' className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-md text-sm font-medium">
+                        <button>Registrate</button> 
+                    </Link>
                 </div>
             </form>
 

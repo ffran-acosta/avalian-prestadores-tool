@@ -6,7 +6,7 @@ app.use(express.json())
 
 import cors from 'cors'
 app.use(cors({
-    origin: 'http://localhost:4000'
+    origin: 'http://localhost:5173'
 }))
 
 // SERVER HOST

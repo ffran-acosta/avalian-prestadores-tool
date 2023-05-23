@@ -42,7 +42,7 @@ const Register: React.FC = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-8 bg-white p-6 rounded-md shadow-md">
+        <div className="max-w-md mx-auto mt-20 bg-gray-100 p-6 rounded-md shadow-md">
             <h2 className="text-2xl font-medium text-center mb-6">REGISTRATE</h2>
 
             {/* USERNAME */}
