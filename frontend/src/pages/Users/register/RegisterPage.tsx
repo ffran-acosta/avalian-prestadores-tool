@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { singupRequest } from '../../../services';
 
 const Register: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -41,44 +42,55 @@ const Register: React.FC = () => {
         }
     };
 
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        const userName = (event.currentTarget.elements[0] as HTMLInputElement).value
+        const email = (event.currentTarget.elements[1] as HTMLInputElement).value
+        const password = (event.currentTarget.elements[2] as HTMLInputElement).value
+        const response = await singupRequest(userName, email, password)
+        console.log(response);
+    }
+
     return (
         <div className="max-w-md mx-auto mt-20 bg-gray-100 p-6 rounded-md shadow-md">
             <h2 className="text-2xl font-medium text-center mb-6">REGISTRATE</h2>
-
-            {/* USERNAME */}
-            <div className="mb-4">
-                <label htmlFor="username" className="block text-gray-700 text-sm font-medium mb-2">Usuario</label>
-                <input type="text" id="username" value={username} onChange={handleUsernameChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700" />
-            </div>
-
-            {/* EMAIL */}
-            <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email</label>
-                <input type="email" id="email" value={email} onChange={handleEmailChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700" />
-            </div>
-
-            {/* PASSWORD */}
-            <div className="mb-4">
-                <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">Contraseña</label>
-                <div className="flex">
-                    <input type={showPassword ? 'text' : 'password'} id="password" value={password} onChange={handlePasswordChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700 pr-10" />
-                    <button type="button" onClick={handleTogglePasswordVisibility} className="ml-2 px-2 py-1 bg-gray-200 rounded-md text-gray-700 text-sm">
-                        {showPassword ? 'Ocultar' : 'Mostrar'}
-                    </button>
-                </div >
+            <form onSubmit={handleSubmit}>
+                {/* USERNAME */}
                 <div className="mb-4">
-                    <label htmlFor="confirmPassword" className="block text-gray-700 text-sm font-medium mb-2">Confirma Contraseña</label>
-                    <input type="password" id="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700" />
-                </div>               
-                {passwordError && <p className="text-red-500 text-sm mb-4">{passwordError}</p>}
-                
-                {/* REGISTER BUTTON */}
-                <div className="flex justify-center">
-                    <button onClick={handleRegister} className="bg-[#006647] hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
-                        Confirmar Registro
-                    </button>
+                    <label htmlFor="username" className="block text-gray-700 text-sm font-medium mb-2">Usuario</label>
+                    <input type="text" id="username" value={username} onChange={handleUsernameChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700" />
                 </div>
-            </div >
+
+                {/* EMAIL */}
+                <div className="mb-4">
+                    <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                    <input type="email" id="email" value={email} onChange={handleEmailChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700" />
+                </div>
+
+                {/* PASSWORD */}
+                <div className="mb-4">
+                    <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">Contraseña</label>
+                    <div className="flex">
+                        <input type={showPassword ? 'text' : 'password'} id="password" value={password} onChange={handlePasswordChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700 pr-10" />
+                        <button type="button" onClick={handleTogglePasswordVisibility} className="ml-2 px-2 py-1 bg-gray-200 rounded-md text-gray-700 text-sm">
+                            {showPassword ? 'Ocultar' : 'Mostrar'}
+                        </button>
+                    </div >
+                    <div className="mb-4">
+                        <label htmlFor="confirmPassword" className="block text-gray-700 text-sm font-medium mb-2">Confirma Contraseña</label>
+                        <input type="password" id="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordChange} className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700" />
+                    </div>
+                    {passwordError && <p className="text-red-500 text-sm mb-4">{passwordError}</p>}
+
+                    {/* REGISTER BUTTON */}
+                    <div className="flex justify-center">
+                        <button onClick={handleRegister} className="bg-[#006647] hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
+                            Confirmar Registro
+                        </button>
+                    </div>
+                </div >
+            </form>
         </div>
     );
 };

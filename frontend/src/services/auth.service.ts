@@ -6,3 +6,11 @@ export const loginRequest = async (name: string, password: string) => {
         password: password
     })
 }
+
+export const singupRequest = async (name: string, email: string, password: string) => {
+    return await axios.post('http://localhost:3031/users/create', {
+        name: name,
+        email: email,
+        password: password
+    })
+}

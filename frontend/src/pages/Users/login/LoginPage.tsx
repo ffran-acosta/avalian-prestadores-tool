@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginRequest } from '../../../services';
-import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
+    const navitgate = useNavigate()
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [loggErr, setLoggErr] = useState('');
 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -19,17 +21,18 @@ const Login: React.FC = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleLogin = () => {
-        // Handle login logic here
-        console.log('Logging in...');
-    };
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const name = (event.currentTarget.elements[0] as HTMLInputElement).value
         const password = (event.currentTarget.elements[1] as HTMLInputElement).value
         const response = await loginRequest(name, password)
-        console.log(response);
+        if (response.status === 200) {
+            navitgate('/dashboard')
+            console.log(response);
+        } else {
+            console.log('object');
+        }
+
     }
 
     return (
@@ -49,9 +52,10 @@ const Login: React.FC = () => {
                         </button>
                     </div>
                 </div>
+                {loggErr && <p className="text-red-500 text-sm mb-4">{loggErr}</p>}
                 <div className="mb-4 flex justify-between items-center">
                     <a href="#" className="text-blue-600 hover:underline text-sm">Olvidaste tu contraseña?</a>
-                    <button onClick={handleLogin} className="bg-[#006647] hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
+                    <button className="bg-[#006647] hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
                         Login
                     </button>
                 </div>
