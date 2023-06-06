@@ -1,9 +1,8 @@
-import { createStore } from 'zustand';
+import { create } from 'zustand';
 import { UserState } from '../model';
 import { persist } from 'zustand/middleware';
 
-
-const useStore = createStore(persist<UserState>((set) => ({
+export const useStore = create(persist<UserState>((set) => ({
     token: null,
     user: null,
     setToken: (token) => set(() => ({ token })),
@@ -12,4 +11,3 @@ const useStore = createStore(persist<UserState>((set) => ({
     name: 'auth',
 }));
 
-export default useStore;

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginRequest } from '../../../services';
-import useStore from '../../../store/auth';
+import { useStore } from '../../../store';
 
 const Login: React.FC = () => {
+
     const navitgate = useNavigate()
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loggErr, setLoggErr] = useState('');
 
-    useStore
+    const setToken = useStore(state => state.setToken)
+    const setUser = useStore(state => state.setUser)  
 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -30,8 +32,9 @@ const Login: React.FC = () => {
         const password = (event.currentTarget.elements[1] as HTMLInputElement).value
         const response = await loginRequest(name, password)
         if (response.status === 200) {
+            setToken(response.data.token)
+            setUser(response.data.user)
             navitgate('/dashboard')
-            console.log(response.data);
         }
     }
 
