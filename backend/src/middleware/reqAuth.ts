@@ -18,10 +18,9 @@ export const reqAuth = (req: Request, res: Response, next: NextFunction) => {
     // verify token
     try {
         // Verify and decode the token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-        console.log(decoded);
-        // Attach the decoded token to the request object for further use
-        // req.user = decoded;
+        // const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+        // Attach the decoded token to the request object for further user
+        // req.user = user
         next();
     } catch (error) {
         return res.status(401).json({

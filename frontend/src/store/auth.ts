@@ -1,15 +1,15 @@
-// import { create } from 'zustand';
+import { createStore } from 'zustand';
+import { UserState } from '../model';
+import { persist } from 'zustand/middleware';
 
-// type State = {
-//     token: string;
-// }
-// type Acions = {
-//     setToken: (token: string) => void;
-// }
 
-// const useAuthStore = create<State & Acions>((set) => ({
-//     token: '',
-//     setToken: (token: string) => set((state) => ({
-//         token
-//     }))
-// }))
+const useStore = createStore(persist<UserState>((set) => ({
+    token: null,
+    user: null,
+    setToken: (token) => set(() => ({ token })),
+    setUser: (user) => set(() => ({ user })),
+}), {
+    name: 'auth',
+}));
+
+export default useStore;

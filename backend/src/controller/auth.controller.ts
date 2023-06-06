@@ -25,7 +25,6 @@ export const authController = {
             const jwtSecret = generateJwtSecret();
             const token: string = await jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
             // Return the token to the client
-            // res.header('auth-token', token).json({ user, token });
             res.json({ user, token })
         } catch (error) {
             console.error('Error during login:', error);
@@ -34,7 +33,7 @@ export const authController = {
     },
 
     profile: async (req: Request, res: Response) => {
-        
+        // req.user
         return res.json('soy el perfil')
     },
 

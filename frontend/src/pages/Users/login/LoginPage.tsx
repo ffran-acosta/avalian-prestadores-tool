@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginRequest } from '../../../services';
+import useStore from '../../../store/auth';
 
 const Login: React.FC = () => {
     const navitgate = useNavigate()
@@ -8,6 +9,8 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loggErr, setLoggErr] = useState('');
+
+    useStore
 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -28,11 +31,8 @@ const Login: React.FC = () => {
         const response = await loginRequest(name, password)
         if (response.status === 200) {
             navitgate('/dashboard')
-            console.log(response);
-        } else {
-            console.log('object');
+            console.log(response.data);
         }
-
     }
 
     return (
