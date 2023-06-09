@@ -12,7 +12,9 @@ const Login: React.FC = () => {
     const [loggErr, setLoggErr] = useState('');
 
     const setToken = useStore(state => state.setToken)
-    const setUser = useStore(state => state.setUser)  
+    const setUser = useStore(state => state.setUser)
+    const setLogin = useStore(state => state.setIsLoggedIn)
+    
 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -34,7 +36,9 @@ const Login: React.FC = () => {
         if (response.status === 200) {
             setToken(response.data.token)
             setUser(response.data.user)
+            setLogin(true)
             navitgate('/dashboard')
+            console.log(response);
         }
     }
 
