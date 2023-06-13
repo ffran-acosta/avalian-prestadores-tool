@@ -12,8 +12,8 @@ export interface Year {
     meses: Mes[];
 }
 
-
 export interface Mes {
     mes: string;
     valor: number;
 }
+

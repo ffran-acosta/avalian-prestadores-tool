@@ -6,14 +6,14 @@ const Navbar = () => {
                     <a href="/">CENTRO DE GESTION</a>
                 </div>
                 <ul className="flex space-x-4">
-                    <li>
+                    {/* <li>
                         <a href="#" className="text-white hover:text-gray-300">Buscador</a>
+                    </li> */}
+                    <li>
+                        <a href="/prestadores" className="text-white hover:text-gray-300">Listado Completo</a>
                     </li>
                     <li>
-                        <a href="#" className="text-white hover:text-gray-300">Listado Completo</a>
-                    </li>
-                    <li>
-                        <a href="#" className="text-white hover:text-gray-300">Subir Archivo</a>
+                        <a href="/profile" className="text-white hover:text-gray-300">Perfil</a>
                     </li>
                     <li>
                         <a href="#" className="text-white hover:text-gray-300">Logout</a>

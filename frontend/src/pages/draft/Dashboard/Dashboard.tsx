@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { Mes, Prestador, Year } from '../../model';
-import { Prestadores } from '../../data';
+import { Mes, Prestador, Year } from '../../../model';
+import { Prestadores } from '../../../data';
+import NotasSection from '../../../components/Prestador/Notas';
 
 const Dashboard: React.FC = () => {
 
   const prestadores: Prestador[] = Prestadores
 
+  const prestador: Prestador = prestadores[0];
+
   const [meses, setMeses] = useState<Mes[]>(prestadores[0].years[0].meses);
 
   const handleModificarValor = (mesIndex: number, nuevoValor: number) => {
-    // Actualizar el valor en el estado local
     const nuevosMeses = [...meses];
     nuevosMeses[mesIndex] = { ...nuevosMeses[mesIndex], valor: nuevoValor };
     setMeses(nuevosMeses);
-  }
-
-  
+  }  
 
   const calcularTotalLineal = (año: Year) => {
     let totalLineal = 0;
@@ -35,7 +35,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-
       {/* <h1 className="text-center">{prestadores[0].prestador}</h1>
       <h2 className="text-center">{prestadores[0].localidad}</h2> */}
 
@@ -65,7 +64,7 @@ const Dashboard: React.FC = () => {
           <tr>
             <th>Mes</th>
             <th>Valor</th>
-            <th>Acciones</th>
+            {/* <th>Acciones</th> */}
           </tr>
         </thead>
         <tbody className="text-lg">
@@ -80,13 +79,16 @@ const Dashboard: React.FC = () => {
                   onChange={(e) => handleModificarValor(index, Number(e.target.value))}
                 />
               </td>
-              <td>
+              {/* <td>
                 <button onClick={() => handleModificarValor(index, 0)}>Reiniciar</button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
       </table>
+
+      <NotasSection prestador={prestador} />
+
     </div>
   );
 };
