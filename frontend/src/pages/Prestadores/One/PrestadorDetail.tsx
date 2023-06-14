@@ -3,7 +3,6 @@ import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
 import { YearTable } from '.';
 
-
 const PrestadorDetail = () => {
 
   const { id } = useParams<{ id: string }>();
@@ -13,7 +12,6 @@ const PrestadorDetail = () => {
   if (!prestador) {
     return <div>Prestador no encontrado</div>;
   }
-
   return (
     <div className='flex justify-center mt-10 flex-wrap'>
       <div className='flex w-full justify-center'>
@@ -42,12 +40,8 @@ const PrestadorDetail = () => {
           </tbody>
         </table>
       </div>
-
-      {prestador.years.sort((a, b) => b.year - a.year).map((year) => (
-        <YearTable key={year.year} year={year} />
-      ))}
-
-
+      
+      <YearTable years={prestador.years}/>
 
     </div>
   )

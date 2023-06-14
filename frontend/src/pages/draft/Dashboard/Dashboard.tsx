@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Mes, Prestador, Year } from '../../../model';
 import { Prestadores } from '../../../data';
-import NotasSection from '../../../components/Prestador/Notas';
 
 const Dashboard: React.FC = () => {
 
@@ -86,9 +85,6 @@ const Dashboard: React.FC = () => {
           ))}
         </tbody>
       </table>
-
-      <NotasSection prestador={prestador} />
-
     </div>
   );
 };

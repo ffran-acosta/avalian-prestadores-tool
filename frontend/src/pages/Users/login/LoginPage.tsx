@@ -62,7 +62,7 @@ const Login: React.FC = () => {
                 {loggErr && <p className="text-red-500 text-sm mb-4">{loggErr}</p>}
                 <div className="mb-4 flex justify-between items-center">
                     <a href="#" className="text-blue-600 hover:underline text-sm">Olvidaste tu contraseña?</a>
-                    <button className="bg-[#006647] hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
+                    <button className="bg-blue-500 hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
                         Login
                     </button>
                 </div>

@@ -85,7 +85,7 @@ const Register: React.FC = () => {
 
                     {/* REGISTER BUTTON */}
                     <div className="flex justify-center">
-                        <button onClick={handleRegister} className="bg-[#006647] hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
+                        <button onClick={handleRegister} className="bg-blue-500 hover:bg-[#11bc66]  text-white py-2 px-4 rounded-md text-sm font-medium">
                             Confirmar Registro
                         </button>
                     </div>
