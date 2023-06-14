@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
-import { YearTable } from '.';
+import { Notes, YearTable } from '.';
 
 const PrestadorDetail = () => {
 
@@ -42,6 +42,7 @@ const PrestadorDetail = () => {
       </div>
       
       <YearTable years={prestador.years}/>
+      <Notes prestador={prestador}/>
 
     </div>
   )
