@@ -13,35 +13,35 @@ export const Prestadores = [
             {
                 "year": 2022,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 7 },
-                    { "mes": "Marzo", "valor": 2 },
-                    { "mes": "Abril", "valor": 9 },
-                    { "mes": "Mayo", "valor": 2 },
-                    { "mes": "Junio", "valor": 6 },
-                    { "mes": "Julio", "valor": 8 },
-                    { "mes": "Agosto", "valor": 4 },
-                    { "mes": "Septiembre", "valor": 1 },
-                    { "mes": "Octubre", "valor": 6 },
-                    { "mes": "Noviembre", "valor": 3 },
-                    { "mes": "Diciembre", "valor": 9 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 7 },
+                    { "mes": "MZO", "valor": 2 },
+                    { "mes": "ABR", "valor": 9 },
+                    { "mes": "MY", "valor": 2 },
+                    { "mes": "JUN", "valor": 6 },
+                    { "mes": "JUL", "valor": 8 },
+                    { "mes": "AGT", "valor": 4 },
+                    { "mes": "SEPT", "valor": 1 },
+                    { "mes": "OCT", "valor": 6 },
+                    { "mes": "NOV", "valor": 3 },
+                    { "mes": "DIC", "valor": 9 }
                 ]
             },
             {
                 "year": 2023,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 6 },
-                    { "mes": "Marzo", "valor": 2 },
-                    { "mes": "Abril", "valor": 8 },
-                    { "mes": "Mayo", "valor": 3 },
-                    { "mes": "Junio", "valor": 7 },
-                    { "mes": "Julio", "valor": 5 },
-                    { "mes": "Agosto", "valor": 9 },
-                    { "mes": "Septiembre", "valor": 1 },
-                    { "mes": "Octubre", "valor": 5 },
-                    { "mes": "Noviembre", "valor": 2 },
-                    { "mes": "Diciembre", "valor": 7 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 6 },
+                    { "mes": "MZO", "valor": 2 },
+                    { "mes": "ABR", "valor": 8 },
+                    { "mes": "MY", "valor": 3 },
+                    { "mes": "JUN", "valor": 7 },
+                    { "mes": "JUL", "valor": 5 },
+                    { "mes": "AGT", "valor": 9 },
+                    { "mes": "SEPT", "valor": 1 },
+                    { "mes": "OCT", "valor": 5 },
+                    { "mes": "NOV", "valor": 2 },
+                    { "mes": "DIC", "valor": 7 }
                 ]
             }
         ]
@@ -60,35 +60,35 @@ export const Prestadores = [
             {
                 "year": 2022,
                 "meses": [
-                    { "mes": "Enero", "valor": 7 },
-                    { "mes": "Febrero", "valor": 7 },
-                    { "mes": "Marzo", "valor": 7 },
-                    { "mes": "Abril", "valor": 7 },
-                    { "mes": "Mayo", "valor": 7 },
-                    { "mes": "Junio", "valor": 7 },
-                    { "mes": "Julio", "valor": 7 },
-                    { "mes": "Agosto", "valor": 7 },
-                    { "mes": "Septiembre", "valor": 7 },
-                    { "mes": "Octubre", "valor": 7 },
-                    { "mes": "Noviembre", "valor": 7 },
-                    { "mes": "Diciembre", "valor": 7 }
+                    { "mes": "EN", "valor": 7 },
+                    { "mes": "FEB", "valor": 7 },
+                    { "mes": "MZO", "valor": 7 },
+                    { "mes": "ABR", "valor": 7 },
+                    { "mes": "MY", "valor": 7 },
+                    { "mes": "JUN", "valor": 7 },
+                    { "mes": "JUL", "valor": 7 },
+                    { "mes": "AGT", "valor": 7 },
+                    { "mes": "SEPT", "valor": 7 },
+                    { "mes": "OCT", "valor": 7 },
+                    { "mes": "NOV", "valor": 7 },
+                    { "mes": "DIC", "valor": 7 }
                 ]
             },
             {
                 "year": 2023,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 6 },
-                    { "mes": "Marzo", "valor": 2 },
-                    { "mes": "Abril", "valor": 8 },
-                    { "mes": "Mayo", "valor": 3 },
-                    { "mes": "Junio", "valor": 7 },
-                    { "mes": "Julio", "valor": 5 },
-                    { "mes": "Agosto", "valor": 9 },
-                    { "mes": "Septiembre", "valor": 1 },
-                    { "mes": "Octubre", "valor": 5 },
-                    { "mes": "Noviembre", "valor": 2 },
-                    { "mes": "Diciembre", "valor": 7 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 6 },
+                    { "mes": "MZO", "valor": 2 },
+                    { "mes": "ABR", "valor": 8 },
+                    { "mes": "MY", "valor": 3 },
+                    { "mes": "JUN", "valor": 7 },
+                    { "mes": "JUL", "valor": 5 },
+                    { "mes": "AGT", "valor": 9 },
+                    { "mes": "SEPT", "valor": 1 },
+                    { "mes": "OCT", "valor": 5 },
+                    { "mes": "NOV", "valor": 2 },
+                    { "mes": "DIC", "valor": 7 }
                 ]
             }
         ]
@@ -107,35 +107,35 @@ export const Prestadores = [
             {
                 "year": 2022,
                 "meses": [
-                    { "mes": "Enero", "valor": 9 },
-                    { "mes": "Febrero", "valor": 9 },
-                    { "mes": "Marzo", "valor": 9 },
-                    { "mes": "Abril", "valor": 9 },
-                    { "mes": "Mayo", "valor": 9 },
-                    { "mes": "Junio", "valor": 9 },
-                    { "mes": "Julio", "valor": 9 },
-                    { "mes": "Agosto", "valor": 9 },
-                    { "mes": "Septiembre", "valor": 9 },
-                    { "mes": "Octubre", "valor": 9 },
-                    { "mes": "Noviembre", "valor": 9 },
-                    { "mes": "Diciembre", "valor": 9 }
+                    { "mes": "EN", "valor": 9 },
+                    { "mes": "FEB", "valor": 9 },
+                    { "mes": "MZO", "valor": 9 },
+                    { "mes": "ABR", "valor": 9 },
+                    { "mes": "MY", "valor": 9 },
+                    { "mes": "JUN", "valor": 9 },
+                    { "mes": "JUL", "valor": 9 },
+                    { "mes": "AGT", "valor": 9 },
+                    { "mes": "SEPT", "valor": 9 },
+                    { "mes": "OCT", "valor": 9 },
+                    { "mes": "NOV", "valor": 9 },
+                    { "mes": "DIC", "valor": 9 }
                 ]
             },
             {
                 "year": 2023,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 6 },
-                    { "mes": "Marzo", "valor": 2 },
-                    { "mes": "Abril", "valor": 8 },
-                    { "mes": "Mayo", "valor": 3 },
-                    { "mes": "Junio", "valor": 7 },
-                    { "mes": "Julio", "valor": 5 },
-                    { "mes": "Agosto", "valor": 9 },
-                    { "mes": "Septiembre", "valor": 1 },
-                    { "mes": "Octubre", "valor": 5 },
-                    { "mes": "Noviembre", "valor": 2 },
-                    { "mes": "Diciembre", "valor": 7 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 6 },
+                    { "mes": "MZO", "valor": 2 },
+                    { "mes": "ABR", "valor": 8 },
+                    { "mes": "MY", "valor": 3 },
+                    { "mes": "JUN", "valor": 7 },
+                    { "mes": "JUL", "valor": 5 },
+                    { "mes": "AGT", "valor": 9 },
+                    { "mes": "SEPT", "valor": 1 },
+                    { "mes": "OCT", "valor": 5 },
+                    { "mes": "NOV", "valor": 2 },
+                    { "mes": "DIC", "valor": 7 }
                 ]
             }
         ]
@@ -154,35 +154,35 @@ export const Prestadores = [
             {
                 "year": 2022,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 7 },
-                    { "mes": "Marzo", "valor": 2 },
-                    { "mes": "Abril", "valor": 9 },
-                    { "mes": "Mayo", "valor": 2 },
-                    { "mes": "Junio", "valor": 6 },
-                    { "mes": "Julio", "valor": 8 },
-                    { "mes": "Agosto", "valor": 4 },
-                    { "mes": "Septiembre", "valor": 1 },
-                    { "mes": "Octubre", "valor": 6 },
-                    { "mes": "Noviembre", "valor": 3 },
-                    { "mes": "Diciembre", "valor": 9 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 7 },
+                    { "mes": "MZO", "valor": 2 },
+                    { "mes": "ABR", "valor": 9 },
+                    { "mes": "MY", "valor": 2 },
+                    { "mes": "JUN", "valor": 6 },
+                    { "mes": "JUL", "valor": 8 },
+                    { "mes": "AGT", "valor": 4 },
+                    { "mes": "SEPT", "valor": 1 },
+                    { "mes": "OCT", "valor": 6 },
+                    { "mes": "NOV", "valor": 3 },
+                    { "mes": "DIC", "valor": 9 }
                 ]
             },
             {
                 "year": 2023,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 4 },
-                    { "mes": "Marzo", "valor": 4 },
-                    { "mes": "Abril", "valor": 4 },
-                    { "mes": "Mayo", "valor": 4 },
-                    { "mes": "Junio", "valor": 4},
-                    { "mes": "Julio", "valor": 4 },
-                    { "mes": "Agosto", "valor": 4 },
-                    { "mes": "Septiembre", "valor": 4 },
-                    { "mes": "Octubre", "valor": 4 },
-                    { "mes": "Noviembre", "valor": 4 },
-                    { "mes": "Diciembre", "valor": 4 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 4 },
+                    { "mes": "MZO", "valor": 4 },
+                    { "mes": "ABR", "valor": 4 },
+                    { "mes": "MY", "valor": 4 },
+                    { "mes": "JUN", "valor": 4},
+                    { "mes": "JUL", "valor": 4 },
+                    { "mes": "AGT", "valor": 4 },
+                    { "mes": "SEPT", "valor": 4 },
+                    { "mes": "OCT", "valor": 4 },
+                    { "mes": "NOV", "valor": 4 },
+                    { "mes": "DIC", "valor": 4 }
                 ]
             }
         ]
@@ -203,35 +203,35 @@ export const Prestadores = [
             {
                 "year": 2022,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 7 },
-                    { "mes": "Marzo", "valor": 2 },
-                    { "mes": "Abril", "valor": 9 },
-                    { "mes": "Mayo", "valor": 2 },
-                    { "mes": "Junio", "valor": 6 },
-                    { "mes": "Julio", "valor": 8 },
-                    { "mes": "Agosto", "valor": 4 },
-                    { "mes": "Septiembre", "valor": 1 },
-                    { "mes": "Octubre", "valor": 6 },
-                    { "mes": "Noviembre", "valor": 3 },
-                    { "mes": "Diciembre", "valor": 9 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 7 },
+                    { "mes": "MZO", "valor": 2 },
+                    { "mes": "ABR", "valor": 9 },
+                    { "mes": "MY", "valor": 2 },
+                    { "mes": "JUN", "valor": 6 },
+                    { "mes": "JUL", "valor": 8 },
+                    { "mes": "AGT", "valor": 4 },
+                    { "mes": "SEPT", "valor": 1 },
+                    { "mes": "OCT", "valor": 6 },
+                    { "mes": "NOV", "valor": 3 },
+                    { "mes": "DIC", "valor": 9 }
                 ]
             },
             {
                 "year": 2023,
                 "meses": [
-                    { "mes": "Enero", "valor": 4 },
-                    { "mes": "Febrero", "valor": 6 },
-                    { "mes": "Marzo", "valor": 2 },
-                    { "mes": "Abril", "valor": 8 },
-                    { "mes": "Mayo", "valor": 3 },
-                    { "mes": "Junio", "valor": 7 },
-                    { "mes": "Julio", "valor": 5 },
-                    { "mes": "Agosto", "valor": 9 },
-                    { "mes": "Septiembre", "valor": 1 },
-                    { "mes": "Octubre", "valor": 5 },
-                    { "mes": "Noviembre", "valor": 2 },
-                    { "mes": "Diciembre", "valor": 7 }
+                    { "mes": "EN", "valor": 4 },
+                    { "mes": "FEB", "valor": 6 },
+                    { "mes": "MZO", "valor": 2 },
+                    { "mes": "ABR", "valor": 8 },
+                    { "mes": "MY", "valor": 3 },
+                    { "mes": "JUN", "valor": 7 },
+                    { "mes": "JUL", "valor": 5 },
+                    { "mes": "AGT", "valor": 9 },
+                    { "mes": "SEPT", "valor": 1 },
+                    { "mes": "OCT", "valor": 5 },
+                    { "mes": "NOV", "valor": 2 },
+                    { "mes": "DIC", "valor": 7 }
                 ]
             }
         ]

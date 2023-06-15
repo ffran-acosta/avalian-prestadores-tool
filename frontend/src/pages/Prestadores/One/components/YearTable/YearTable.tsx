@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Year } from '../../../../../model';
 import ReactModal from 'react-modal';
+import { oneYearTNA } from '../../../../../util';
 
 interface TablaMesesProps {
   years: Year[];
@@ -16,6 +17,7 @@ const YearTable: React.FC<TablaMesesProps> = ({ years }) => {
     closeModal();
   };
 
+
   return (
     <div className='mt-10'>
       <table className='w-3/5'>
@@ -27,6 +29,8 @@ const YearTable: React.FC<TablaMesesProps> = ({ years }) => {
                 {mes.mes}
               </th>
             ))}
+            <th className='p-4'>Tot Lineal</th>
+            <th className='p-4'>Tot Acum.</th>
           </tr>
         </thead>
         <tbody className='text-center border border-gray-800'>
@@ -35,9 +39,11 @@ const YearTable: React.FC<TablaMesesProps> = ({ years }) => {
               <td className='p-4 text-xl font-bold'>{year.year}</td>
               {year.meses.map(mes => (
                 <td key={mes.mes} className='p-4'>
-                  {mes.valor} %
+                  {mes.valor}%
                 </td>
               ))}
+              <td className='p-4 text-xl font-bold'>{oneYearTNA(year.meses)} %</td>
+              <td className='p-4 text-xl font-bold'>0</td>
             </tr>
           ))}
         </tbody>
