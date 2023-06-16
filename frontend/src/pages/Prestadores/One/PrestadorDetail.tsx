@@ -3,6 +3,7 @@ import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
 import { Notes, PeriodCalc, YearTable } from '.';
 import { historicTNA } from '../../../util';
+import ReferentialValues from './components/ReferentialValues/ReferentialValuesReferentialValues';
 
 const PrestadorDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,9 +15,9 @@ const PrestadorDetail = () => {
   }
 
   return (
-    <div className="flex justify-center mt-10 flex-wrap">
-      <div className="flex w-full justify-center">
-        <table className="w-3/5">
+    <div className="flex justify-center mt-10 flex-wrap w-full">
+      <div className="flex justify-center w-5/6">
+        <table>
           <thead className="text-center">
             <tr className="border border-gray-800 text-lg">
               <th className="p-4">ID</th>
@@ -39,6 +40,7 @@ const PrestadorDetail = () => {
           </tbody>
         </table>
       </div>
+      <ReferentialValues/>
       <YearTable years={prestador.years} />
       <PeriodCalc years={prestador.years} />
       <Notes prestador={prestador} />

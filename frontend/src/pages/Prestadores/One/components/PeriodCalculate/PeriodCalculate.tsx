@@ -32,7 +32,7 @@ const PeriodCalc: React.FC<CalcularSumaProps> = ({ years }) => {
     };
 
     return (
-        <div>
+        <div className='mt-10'>
             <div>
                 <label htmlFor="startYear">Año de inicio:</label>
                 <select id="startYear" value={startYear} onChange={(e) => setStartYear(Number(e.target.value))}>
