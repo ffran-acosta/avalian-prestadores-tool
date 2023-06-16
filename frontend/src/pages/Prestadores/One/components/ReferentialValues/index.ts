@@ -1,1 +1,1 @@
-export { default as ReferentialValuesReferentialValues } from './ReferentialValuesReferentialValues';
+export { default as ReferentialValues } from './ReferentialValues';

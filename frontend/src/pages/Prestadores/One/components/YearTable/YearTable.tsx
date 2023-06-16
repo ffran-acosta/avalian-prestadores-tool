@@ -19,31 +19,31 @@ const YearTable: React.FC<TablaMesesProps> = ({ years }) => {
 
 
   return (
-    <div className='mt-10'>
-      <table className='w-3/5 '>
-        <thead className='text-center'>
-          <tr className='border border-gray-800 text-lg'>
-            <th className='p-4'>Año</th>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Año</th>
             {years[0].meses.map(mes => (
-              <th key={mes.mes} className='p-4'>
+              <th key={mes.mes}>
                 {mes.mes}
               </th>
             ))}
-            <th className='p-4'>Tot Lineal</th>
-            <th className='p-4'>Tot Acum.</th>
+            <th>Tot Lineal</th>
+            <th>Tot Acum.</th>
           </tr>
         </thead>
-        <tbody className='text-center border border-gray-800'>
+        <tbody >
           {years.map(year => (
-            <tr key={year.year} className='border border-gray-800'>
-              <td className='p-2 text-xl font-bold'>{year.year}</td>
+            <tr key={year.year}>
+              <td className="font-bold">{year.year}</td>
               {year.meses.map(mes => (
-                <td key={mes.mes} className='p-4'>
+                <td key={mes.mes}>
                   {mes.valor}%
                 </td>
               ))}
-              <td className='p-2 text-xl font-bold'>{oneYearTNA(year.meses)} %</td>
-              <td className='p-2 text-xl font-bold'>0</td>
+              <td className="font-bold">{oneYearTNA(year.meses)} %</td>
+              <td className="font-bold">0</td>
             </tr>
           ))}
         </tbody>

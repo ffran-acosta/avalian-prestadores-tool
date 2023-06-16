@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    table {
+        @apply border-collapse border border-gray-300
+    }
+
+    thead th {
+        @apply bg-gray-200 p-2
+    }
+
+    thead tr {
+        @apply bg-gray-200
+    }
+
+    tbody tr {
+        @apply bg-white
+    }
+
+    td {
+        @apply px-4 py-2 text-center
+    }
+
+    button {
+        @apply mt-2 px-4 py-2 bg-blue-500 text-white rounded
+    }
+
+}
