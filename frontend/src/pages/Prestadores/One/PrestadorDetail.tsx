@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
 import { BasicInfo, Notes, PeriodCalc, ReferentialValues, YearTable } from '.';
-import { historicTNA } from '../../../util';
 
 const PrestadorDetail = () => {
 

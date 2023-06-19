@@ -30,51 +30,80 @@ const PeriodCalc: React.FC<CalcularSumaProps> = ({ years }) => {
 
         return sum;
     };
-
     return (
         <div>
-            <div>
-                <label htmlFor="startYear">Año de inicio:</label>
-                <select id="startYear" value={startYear} onChange={(e) => setStartYear(Number(e.target.value))}>
-                    {years.map((year) => (
-                        <option key={year.year} value={year.year}>
-                            {year.year}
-                        </option>
-                    ))}
-                </select>
+            <div className="flex justify-center">
+                <div className="flex items-center mr-4">
+                    <div>
+                        <label htmlFor="startYear" className="mr-2 font-bold">AÑO:</label>
+                        <select
+                            id="startYear"
+                            value={startYear}
+                            onChange={(e) => setStartYear(Number(e.target.value))}
+                            className="mr-2"
+                        >
+                            {years.map((year) => (
+                                <option key={year.year} value={year.year}>
+                                    {year.year}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="startMonth" className="mr-2 font-bold">MES:</label>
+                        <select
+                            id="startMonth"
+                            value={startMonth}
+                            onChange={(e) => setStartMonth(e.target.value)}
+                            className="mr-2"
+                        >
+                            {startYear &&
+                                years.find((year) => year.year === startYear)?.meses.map((mes) => (
+                                    <option key={mes.mes} value={mes.mes}>
+                                        {mes.mes}
+                                    </option>
+                                ))}
+                        </select>
+                    </div>
+                </div>
+
+                <div className="flex items-center">
+                    <div>
+                        <label htmlFor="endYear" className="mr-2 font-bold">AÑO:</label>
+                        <select
+                            id="endYear"
+                            value={endYear}
+                            onChange={(e) => setEndYear(Number(e.target.value))}
+                            className="mr-2"
+                        >
+                            {years.map((year) => (
+                                <option key={year.year} value={year.year}>
+                                    {year.year}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="endMonth" className="mr-2 font-bold">MES:</label>
+                        <select
+                            id="endMonth"
+                            value={endMonth}
+                            onChange={(e) => setEndMonth(e.target.value)}
+                            className="mr-2"
+                        >
+                            {endYear &&
+                                years.find((year) => year.year === endYear)?.meses.map((mes) => (
+                                    <option key={mes.mes} value={mes.mes}>
+                                        {mes.mes}
+                                    </option>
+                                ))}
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label htmlFor="startMonth">Mes de inicio:</label>
-                <select id="startMonth" value={startMonth} onChange={(e) => setStartMonth(e.target.value)}>
-                    {startYear &&
-                        years.find((year) => year.year === startYear)?.meses.map((mes) => (
-                            <option key={mes.mes} value={mes.mes}>
-                                {mes.mes}
-                            </option>
-                        ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor="endYear">Año de finalización:</label>
-                <select id="endYear" value={endYear} onChange={(e) => setEndYear(Number(e.target.value))}>
-                    {years.map((year) => (
-                        <option key={year.year} value={year.year}>
-                            {year.year}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor="endMonth">Mes de finalización:</label>
-                <select id="endMonth" value={endMonth} onChange={(e) => setEndMonth(e.target.value)}>
-                    {endYear &&
-                        years.find((year) => year.year === endYear)?.meses.map((mes) => (
-                            <option key={mes.mes} value={mes.mes}>
-                                {mes.mes}
-                            </option>
-                        ))}
-                </select>
-            </div>
+
             {/* <button onClick={calculateSum}>Calcular suma</button> */}
             <p>Suma: {calculateSum()}</p>
         </div>
