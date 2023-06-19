@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { Year } from '../../../../../model';
 import ReactModal from 'react-modal';
 import { oneYearTNA } from '../../../../../util';
+import { YearPage } from '../../../../../model';
 
-interface TablaMesesProps {
-  years: Year[];
-}
-
-const YearTable: React.FC<TablaMesesProps> = ({ years }) => {
+const YearTable: React.FC<YearPage> = ({ years }) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
@@ -16,7 +12,6 @@ const YearTable: React.FC<TablaMesesProps> = ({ years }) => {
   const handleGuardar = () => {
     closeModal();
   };
-
 
   return (
     <div>

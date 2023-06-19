@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { Year } from '../../../../../model';
+import { YearPage } from '../../../../../model';
 
-interface CalcularSumaProps {
-    years: Year[];
-}
 
-const PeriodCalc: React.FC<CalcularSumaProps> = ({ years }) => {
+const PeriodCalc: React.FC<YearPage> = ({ years }) => {
     const [startYear, setStartYear] = useState<number>(years[0]?.year || 0);
     const [startMonth, setStartMonth] = useState<string>(years[0]?.meses[0]?.mes || '');
     const [endYear, setEndYear] = useState<number>(years[0]?.year || 0);

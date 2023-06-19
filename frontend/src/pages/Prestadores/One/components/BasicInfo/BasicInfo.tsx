@@ -1,11 +1,7 @@
-import { Prestador } from "../../../../../model";
+import { PrestadorPage } from "../../../../../model"
 import { historicTNA } from "../../../../../util"
 
-interface TablaPrestadorProps {
-    prestador: Prestador;
-}
-
-const BasicInfo: React.FC<TablaPrestadorProps> = ({ prestador }) => {
+const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
     return (
         <div>
             <table>

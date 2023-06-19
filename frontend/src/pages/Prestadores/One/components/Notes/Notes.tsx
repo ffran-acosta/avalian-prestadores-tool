@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Prestador } from '../../../../../model';
 import ReactModal from 'react-modal';
+import { PrestadorPage } from '../../../../../model';
 
-interface NotasProps {
-  prestador: Prestador;
-}
-const Notes: React.FC<NotasProps> = ({ prestador }) => {
+
+
+const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => {
     setModalOpen(false);
