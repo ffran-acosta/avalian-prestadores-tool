@@ -1,5 +1,6 @@
 import { VeloresReferenciales } from "../../../../../data";
 import { Mes } from "../../../../../model";
+import { ninetyPercent, ninetyPercentArray, oneYearTNA } from "../../../../../util";
 
 const ReferentialValues = () => {
     return (
@@ -21,11 +22,16 @@ const ReferentialValues = () => {
                         {VeloresReferenciales.map((item: Mes) => (
                             <td key={item.mes}>{item.valor}</td>
                         ))}
-                        <td className="font-bold">0</td>
+                        <td className="font-bold">{oneYearTNA(VeloresReferenciales)} %</td>
                         <td className="font-bold">0</td>
                     </tr>
                     <tr>
                         <td className="font-bold">90%</td>
+                        {VeloresReferenciales.map((item: Mes) => (
+                            <td key={item.mes}>{ninetyPercent(item.valor)}</td>
+                        ))}
+                        <td className="font-bold">{ninetyPercentArray(VeloresReferenciales)} %</td>
+                        <td className="font-bold">0</td>
                     </tr>
                     <tr>
                         <td className="font-bold">???</td>
