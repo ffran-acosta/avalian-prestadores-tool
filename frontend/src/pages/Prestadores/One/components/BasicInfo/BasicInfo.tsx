@@ -1,5 +1,5 @@
 import { PrestadorPage } from "../../../../../model"
-import { historicTNA } from "../../../../../util"
+import { historicNominalInterestRates, historicEffectiveInterestRates } from "../../../../../util"
 
 const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
     return (
@@ -21,8 +21,8 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                         <td>{prestador.prestador}</td>
                         <td>{prestador.localidad}</td>
                         <td>{prestador.tipo}</td>
-                        <td>{historicTNA(prestador.years)}</td>
-                        <td>0</td>
+                        <td>{historicNominalInterestRates(prestador.years)} %</td>
+                        <td>{historicEffectiveInterestRates(prestador.years)} %</td>
                     </tr>
                 </tbody>
             </table>

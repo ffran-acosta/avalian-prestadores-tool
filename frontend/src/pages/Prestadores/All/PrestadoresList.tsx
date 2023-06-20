@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
 import { Link } from 'react-router-dom';
+import { historicNominalInterestRates, historicEffectiveInterestRates } from '../../../util';
 
 const PrestadoresList = () => {
 
@@ -41,7 +42,7 @@ const PrestadoresList = () => {
 
     return (
         <div className="flex justify-center mt-10 flex-wrap">
-            <h1 className='flex w-full justify-center '>Lista de Prestadores</h1>
+            {/* <h1 className='flex w-full justify-center '>Lista de Prestadores</h1> */}
             <div className="flex w-full justify-center mb-4">
                 <input
                     type="text"
@@ -73,8 +74,8 @@ const PrestadoresList = () => {
                             </td>
                             <td className='p-4'>{prestador.localidad}</td>
                             <td className='p-4'>{prestador.tipo}</td>
-                            <td className='p-4'>0</td>
-                            <td className='p-4'>0</td>
+                            <td className='p-4 font-bold'>{historicNominalInterestRates(prestador.years)} %</td>
+                            <td className='p-4'>{historicEffectiveInterestRates(prestador.years)} %</td>
                         </tr>
                     ))}
                 </tbody>

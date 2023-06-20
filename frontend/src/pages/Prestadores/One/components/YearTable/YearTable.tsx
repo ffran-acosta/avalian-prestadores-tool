@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
-import { oneYearTNA } from '../../../../../util';
+import { oneYearEffectiveInterestRates, oneYearNominalInterestRates } from '../../../../../util';
 import { YearPage } from '../../../../../model';
 
 const YearTable: React.FC<YearPage> = ({ years }) => {
@@ -37,8 +37,8 @@ const YearTable: React.FC<YearPage> = ({ years }) => {
                   {mes.valor}%
                 </td>
               ))}
-              <td className="font-bold">{oneYearTNA(year.meses)} %</td>
-              <td className="font-bold">0</td>
+              <td className="font-bold">{oneYearNominalInterestRates(year.meses)} %</td>
+              <td className="font-bold">{oneYearEffectiveInterestRates(year.meses)}%</td>
             </tr>
           ))}
         </tbody>
