@@ -1,6 +1,7 @@
 export const Prestadores = [
     {
         "id": 1,
+        "userId" : 1,
         "prestador": "Nombre del prestador 1",
         "localidad": "Nombre de la localidad",
         "tipo": "Tipo de prestador",
@@ -48,6 +49,7 @@ export const Prestadores = [
     },
     {
         "id": 2,
+        "userId" : 1,
         "prestador": "Nombre del prestador 2",
         "localidad": "Nombre de la localidad 2",
         "tipo": "Tipo de prestador 2",
@@ -95,6 +97,7 @@ export const Prestadores = [
     },
     {
         "id": 3,
+        "userId" : 1,
         "prestador": "Nombre del prestador 3",
         "localidad": "Nombre de la localidad 2",
         "tipo": "Tipo de prestador 2",
@@ -142,6 +145,7 @@ export const Prestadores = [
     },
     {
         "id": 4,
+        "userId" : 1,
         "prestador": "Nombre del prestador 4",
         "localidad": "Nombre de la localidad",
         "tipo": "Tipo de prestador",
@@ -189,6 +193,7 @@ export const Prestadores = [
     },
     {
         "id": 5,
+        "userId" : 1,
         "prestador": "Nombre del prestador 5",
         "localidad": "Nombre de la localidad",
         "tipo": "Tipo de prestador",

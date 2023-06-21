@@ -14,9 +14,11 @@ import { port, start } from './modules';
 app.listen(port, start)
 
 // ROUTES 
-import { indexRoute } from './routes';
-app.use(indexRoute)
+import { indexRoutes } from './routes';
+app.use(indexRoutes)
 
-import { userRoute } from './routes';
-app.use('/users', userRoute)
+import { userRoutes } from './routes';
+app.use('/users', userRoutes)
 
+import { prestadoresRoutes } from './routes';
+app.use('/api/prestadores', prestadoresRoutes)

@@ -1,2 +1,3 @@
-export { default as indexRoute } from './index.routes';
-export { default as userRoute } from './user.routes';
+export { default as indexRoutes } from './index.routes';
+export { default as prestadoresRoutes } from './prestadores.routes';
+export { default as userRoutes } from './user.routes';
