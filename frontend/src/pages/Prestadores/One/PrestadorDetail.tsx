@@ -1,13 +1,30 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Prestadores } from '../../../data';
+// import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
 import { BasicInfo, Notes, PeriodCalc, ReferentialValues, YearTable } from '.';
+import { prestadoresRequest } from '../../../services';
 
 const PrestadorDetail = () => {
 
   const { id } = useParams<{ id: string }>();
   const prestadorId = parseInt(id || '');
-  const prestador: Prestador | undefined = Prestadores.find((p) => p.id === prestadorId);
+  const [prestador, setPrestador] = useState<Prestador | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchPrestador = async () => {
+      try {
+        const prestadores = await prestadoresRequest();
+        const foundPrestador = prestadores.find((p: Prestador) => p.id === prestadorId);
+        setPrestador(foundPrestador);
+      } catch (error) {
+        console.error('Failed to retrieve prestadores: ', error);
+      }
+    };
+
+    fetchPrestador();
+  }, [prestadorId]);
+
 
   if (!prestador) {
     return <div>Prestador no encontrado</div>;

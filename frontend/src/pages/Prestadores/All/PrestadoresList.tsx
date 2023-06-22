@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
 import { Link } from 'react-router-dom';
 import { historicNominalInterestRates, historicEffectiveInterestRates } from '../../../util';
+import { prestadoresRequest } from '../../../services';
 
 const PrestadoresList = () => {
 
@@ -13,21 +13,18 @@ const PrestadoresList = () => {
     const [prestadoresFiltrados, setPrestadoresFiltrados] = useState<Prestador[]>([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // const response = await fetch('ruta-al-archivo/prestadores.json');
-                const response = Prestadores
-                // const data = await response.json();
-                // setPrestadores(data);
-                setPrestadores(response);
-            } catch (error) {
-                console.error('Error al obtener los prestadores:', error);
-            }
-        };
-
-        fetchData();
+        obtenerDatosPrestadores();
     }, []);
-
+    
+    const obtenerDatosPrestadores = async () => {
+        try {
+            const data = await prestadoresRequest();
+            setPrestadores(data);
+        } catch (error) {
+            console.log('Error al obtener los prestadores:', error);
+        }
+    };
+    
     useEffect(() => {
         if (filtro === "") {
             setPrestadoresFiltrados(prestadores);

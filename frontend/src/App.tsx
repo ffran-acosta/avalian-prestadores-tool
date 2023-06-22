@@ -1,5 +1,5 @@
 import { Navbar } from './components'
-import { LoginPage, PrestadorDetail, PrestadoresList, RegisterPage, Dashboard, Profile } from './pages';
+import { LoginPage, PrestadorDetail, PrestadoresList, RegisterPage, Profile } from './pages';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
