@@ -7,46 +7,24 @@ CREATE TABLE users (
 
 INSERT INTO users (name, password, email) VALUES ('Franco', '123456', 'franco@gmail.com')
 
-CREATE TABLE Prestadores (
-    id INT PRIMARY KEY,
-    userId INT,
+CREATE TABLE prestadores (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users (id),
     prestador VARCHAR(255),
     localidad VARCHAR(255),
-    tipo VARCHAR(255)
+    tipo VARCHAR(255),
+    notas TEXT[],
+    years JSONB[]
 );
 
-CREATE TABLE Notas (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    prestadorId INT,
-    nota VARCHAR(255),
-    FOREIGN KEY (prestadorId) REFERENCES Prestadores(id)
+INSERT INTO prestadores (id, user_id, prestador, localidad, tipo, notas, years)
+VALUES
+    (1, 1, 'Nombre del prestador 1', 'Nombre de la localidad', 'Tipo de prestador',
+    ARRAY['Nota 1 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
+            'Nota 2 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
+            'Nota 3 asdassdasd'],
+    ARRAY[
+        '{"year": 2022, "meses": [{"mes": "ENE", "valor": 4}, {"mes": "FEB", "valor": 7}, {"mes": "MAR", "valor": 2}, {"mes": "ABR", "valor": 9}, {"mes": "MAY", "valor": 2}, {"mes": "JUN", "valor": 6}, {"mes": "JUL", "valor": 8}, {"mes": "AGO", "valor": 4}, {"mes": "SEP", "valor": 1}, {"mes": "OCT", "valor": 6}, {"mes": "NOV", "valor": 3}, {"mes": "DIC", "valor": 9}]}',
+        '{"year": 2023, "meses": [{"mes": "ENE", "valor": 4}, {"mes": "FEB", "valor": 6}, {"mes": "MAR", "valor": 2}, {"mes": "ABR", "valor": 8}, {"mes": "MAY", "valor": 3}, {"mes": "JUN", "valor": 7}, {"mes": "JUL", "valor": 5}, {"mes": "AGO", "valor": 9}, {"mes": "SEP", "valor": 1}, {"mes": "OCT", "valor": 5}, {"mes": "NOV", "valor": 2}, {"mes": "DIC", "valor": 7}]}'
+    ]::JSONB[]
 );
-
-CREATE TABLE Years (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    prestadorId INT,
-    year INT,
-    FOREIGN KEY (prestadorId) REFERENCES Prestadores(id)
-);
-
-CREATE TABLE Meses (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    yearId INT,
-    mes VARCHAR(3),
-    valor INT,
-    FOREIGN KEY (yearId) REFERENCES Years(id)
-);
-
-
--- CREATE TABLE Usuarios (
---     UsuarioID INT PRIMARY KEY,
---     Nombre VARCHAR(50),
---     -- Otros campos relevantes de usuario
--- );
--- CREATE TABLE DatosExcel (
---     ID INT PRIMARY KEY,
---     UsuarioID INT,
---     Datos VARCHAR(255),
---     -- Otros campos relevantes para los datos de Excel
---     FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID)
--- );
