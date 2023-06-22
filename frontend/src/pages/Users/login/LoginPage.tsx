@@ -37,7 +37,7 @@ const Login: React.FC = () => {
             setToken(response.data.token)
             setUser(response.data.user)
             setLogin(true)
-            navitgate('/dashboard')
+            navitgate('/prestadores')
             console.log(response);
         }
     }

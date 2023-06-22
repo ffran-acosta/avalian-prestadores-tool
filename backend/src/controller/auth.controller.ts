@@ -32,30 +32,28 @@ export const authController = {
         }
     },
 
-    profile: async (req: Request, res: Response) => {
-        // req.user
-        return res.json('soy el perfil')
-    },
+    // profile: async (req: Request, res: Response) => {
+    //     // req.user
+    //     return res.json('soy el perfil')
+    // },
 
-    logout: async (_req: Request, res: Response) => {
-        try {
-            // Clear any session data or perform any logout operations
+    // logout: async (_req: Request, res: Response) => {
+    //     try {
+    //         // Clear any session data or perform any logout operations
 
-            // Clear session cookies
-            res.clearCookie('session');
+    //         // Clear session cookies
+    //         res.clearCookie('session');
+    //         // Invalidate user's token
+    //         // For example, you can remove the token from the client-side or add it to a token blacklist
+    //         // Clear user-related data from local storage
+    //         localStorage.removeItem('token');
+    //         localStorage.removeItem('userData');
 
-            // Invalidate user's token
-            // For example, you can remove the token from the client-side or add it to a token blacklist
-
-            // Clear user-related data from local storage
-            localStorage.removeItem('token');
-            localStorage.removeItem('userData');
-
-            // Redirect the user to the login page or display a logout success message
-            res.json({ message: 'Logout successful' });
-        } catch (error) {
-            console.error('Error during logout:', error);
-            res.status(500).json({ error: 'Failed to logout' });
-        }
-    }
+    //         // Redirect the user to the login page or display a logout success message
+    //         res.json({ message: 'Logout successful' });
+    //     } catch (error) {
+    //         console.error('Error during logout:', error);
+    //         res.status(500).json({ error: 'Failed to logout' });
+    //     }
+    // }
 }
