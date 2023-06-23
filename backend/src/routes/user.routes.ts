@@ -1,12 +1,10 @@
 import express from 'express';
 const router = express.Router();
 
-import { authController, userController } from '../controller';
-import { reqAuth } from '../middleware';
+import { userController } from '../controller';
 
 // auth login
-router.post('/auth/login', authController.login)
-// router.get('/auth/profile', reqAuth, authController.profile)
+router.post('/auth/login', userController.login)
 
 // crud
 router.get('/all', userController.getUsers);

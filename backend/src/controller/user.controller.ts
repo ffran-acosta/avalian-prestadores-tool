@@ -3,7 +3,8 @@ import { Request, Response } from 'express';
 import { localDb } from '../database';
 import { User } from '../models';
 
-import { encryptPassword } from '../utils';
+import jwt from 'jsonwebtoken';
+import { encryptPassword, comparePasswords, generateJwtSecret } from '../utils';
 
 export const userController = {
 
@@ -28,6 +29,30 @@ export const userController = {
         }
     },
 
+    login: async (req: Request, res: Response) => {
+        try {
+            const { name, password } = req.body;
+            // Check if the user exists in the database
+            const user = await localDb.oneOrNone<User>('SELECT * FROM users WHERE name = $1', [name]);
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            // Compare the provided password with the stored hash
+            const passwordMatch = await comparePasswords(password, user.password);
+            if (!passwordMatch) {
+                return res.status(401).json({ error: 'Invalid password' });
+            }
+            // Generate a JWT token with a self-generated secret key
+            const jwtSecret = generateJwtSecret();
+            const token: string = await jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
+            // Return the token to the client
+            res.json({ user, token })
+        } catch (error) {
+            console.error('Error during login:', error);
+            res.status(500).json({ error: 'Failed to login' });
+        }
+    },
+
     createUser: async (req: Request, res: Response) => {
         try {
             const { name, password, email } = req.body;
@@ -45,19 +70,6 @@ export const userController = {
             res.status(500).json({ error: 'Failed to create user' });
         }
     },
-
-    // updateUser: async (req: Request, res: Response) => {
-    //     try {
-    //         const { id } = req.params;
-    //         const { name, email } = req.body;
-    //         const updatedUser: User = { id: parseInt(id), name, email };
-    //         await localDb.none('UPDATE users SET name = $1, email = $2 WHERE id = $3', [updatedUser.name, updatedUser.email, updatedUser.id]);
-    //         res.json(updatedUser);
-    //     } catch (error) {
-    //         console.error('Error updating user:', error);
-    //         res.status(500).json({ error: 'Failed to update user' });
-    //     }
-    // },
 
     deleteUser: async (req: Request, res: Response) => {
         try {

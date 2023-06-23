@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 // Extend the Request interface
 declare global {
     namespace Express {
-        interface Request{
+        interface Request {
             user?: any;
         }
     }
