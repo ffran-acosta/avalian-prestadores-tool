@@ -1,4 +1,14 @@
 import axios from "axios";
+import { Prestador } from "../model";
+
+const getAuthToken = () => {
+    const authStore = localStorage.getItem('auth-store');
+    if (authStore) {
+        const { state } = JSON.parse(authStore);
+        return state.token;
+    }
+    return null;
+};
 
 export const loginRequest = async (name: string, password: string) => {
     return await axios.post('http://localhost:3031/users/auth/login', {
@@ -17,19 +27,33 @@ export const singupRequest = async (name: string, email: string, password: strin
 
 export const prestadoresRequest = async () => {
     try {
-        const authStore = localStorage.getItem('auth-store'); // Obtén el valor del Local Storage
-        if (authStore) {
-            const { state } = JSON.parse(authStore);
-            const token = state.token;
+        const token = getAuthToken();
+        if (token) {
             const response = await axios.get('http://localhost:3031/api/prestadores/all', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            const data = response?.data;
-            return data;
+            console.log(response.data);
+            return response?.data;
         }
     } catch (error) {
         console.error('Error al obtener los prestadores:', error);
+    }
+};
+
+export const createPrestadorRequest = async (prestador: Prestador) => {
+    try {
+        const token = getAuthToken();
+        if (token) {
+            const response = await axios.post('http://localhost:3031/api/prestadores/create', prestador, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response?.data;
+        }
+    } catch (error) {
+        console.error('Error al crear el prestador:', error);
     }
 };

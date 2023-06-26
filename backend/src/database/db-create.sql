@@ -8,13 +8,13 @@ CREATE TABLE users (
 INSERT INTO users (name, password, email) VALUES ('Franco', '123456', 'franco@gmail.com')
 
 CREATE TABLE prestadores (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users (id),
-    prestador VARCHAR(255),
+    id INT PRIMARY KEY,
+    user_id INTEGER REFERENCES users (id) NOT NULL,
+    prestador VARCHAR(255) NOT NULL,
     localidad VARCHAR(255),
     tipo VARCHAR(255),
-    notas TEXT[],
-    years JSONB[]
+    notas TEXT[] DEFAULT ARRAY[]::TEXT[],
+    years JSONB[] DEFAULT ARRAY[]::JSONB[]
 );
 
 INSERT INTO prestadores (id, user_id, prestador, localidad, tipo, notas, years)
@@ -31,7 +31,7 @@ VALUES
 
 INSERT INTO prestadores (id, user_id, prestador, localidad, tipo, notas, years)
 VALUES
-    (2, 13, 'Nombre del prestador 1', 'Nombre de la localidad', 'Tipo de prestador',
+    (321, 13, 'Nombre del prestador 123', 'Nombre de la localidad 123', 'Tipo de prestador 123',
     ARRAY['Nota 1 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
             'Nota 2 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
             'Nota 3 asdassdasd'],
