@@ -23,12 +23,10 @@ export const reqAuth = (req: Request, res: Response, next: NextFunction) => {
     if (!token) return res.status(401).json({
         message: 'No token provided'
     })
-
+    
     // verify token
     try {
-        // Verify and decode the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-        // Attach the decoded token to the request object for further user
         req.user = decoded
         next();
     } catch (error) {
