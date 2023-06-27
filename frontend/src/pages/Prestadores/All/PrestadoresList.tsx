@@ -3,12 +3,17 @@ import { Prestador } from '../../../model';
 import { Link } from 'react-router-dom';
 import { historicNominalInterestRates, historicEffectiveInterestRates } from '../../../util';
 import { prestadoresRequest } from '../../../services';
+import ModalCrearPrestador from './components/Modal/CreatePrestador';
 
 const PrestadoresList = () => {
     const [prestadores, setPrestadores] = useState<Prestador[]>([]);
     const [prestadorSeleccionado, setPrestadorSeleccionado] = useState<Prestador | null>(null);
     const [filtro, setFiltro] = useState<string>("");
     const [prestadoresFiltrados, setPrestadoresFiltrados] = useState<Prestador[]>([]);
+    const [showModal, setShowModal] = useState(false);
+    const handleModalClose = () => {
+        setShowModal(false);
+    };
 
     useEffect(() => {
         obtenerDatosPrestadores();
@@ -48,10 +53,13 @@ const PrestadoresList = () => {
                 />
                 <button
                     className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => setShowModal(true)} // Abre el modal al hacer clic en el botón
                 >
                     Nuevo Prestador
                 </button>
             </div>
+            {showModal && <ModalCrearPrestador onClose={handleModalClose} />}
+
             <table>
                 <thead className="text-center">
                     <tr className="border border-gray-800 text-lg">

@@ -1,14 +1,6 @@
 import axios from "axios";
 import { Prestador } from "../model";
-
-const getAuthToken = () => {
-    const authStore = localStorage.getItem('auth-store');
-    if (authStore) {
-        const { state } = JSON.parse(authStore);
-        return state.token;
-    }
-    return null;
-};
+import { getAuthToken, getUserId } from "../store";
 
 export const loginRequest = async (name: string, password: string) => {
     return await axios.post('http://localhost:3031/users/auth/login', {
@@ -45,12 +37,21 @@ export const prestadoresRequest = async () => {
 export const createPrestadorRequest = async (prestador: Prestador) => {
     try {
         const token = getAuthToken();
-        if (token) {
-            const response = await axios.post('http://localhost:3031/api/prestadores/create', prestador, {
-                headers: {
-                    Authorization: `Bearer ${token}`
+        const userId = getUserId();
+
+        if (token && userId) {
+            prestador.userId = userId;
+
+            const response = await axios.post(
+                'http://localhost:3031/api/prestadores/create',
+                prestador,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                 }
-            });
+            );
+
             return response?.data;
         }
     } catch (error) {

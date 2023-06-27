@@ -13,6 +13,24 @@ export const useStore = create(persist<UserState>((set) => ({
     name: 'auth-store',
 }));
 
+export const getAuthToken = () => {
+    const authStore = localStorage.getItem('auth-store');
+    if (authStore) {
+        const { state } = JSON.parse(authStore);
+        return state.token;
+    }
+    return null;
+};
+
+export const getUserId = () => {
+    const authStore = localStorage.getItem('auth-store');
+    if (authStore) {
+        const { state } = JSON.parse(authStore);
+        return state.user.id;
+    }
+    return null;
+};
+
 
 // export const useProfileStore = create<ProfileState>((set) => ({
 //     profileData: null,
