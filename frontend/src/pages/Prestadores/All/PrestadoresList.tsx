@@ -86,10 +86,10 @@ const PrestadoresList = () => {
                             <td className="p-4">{prestador.localidad}</td>
                             <td className="p-4">{prestador.tipo}</td>
                             <td className="p-4 font-bold">
-                                {historicNominalInterestRates(prestador.years)} %
+                                1 %
                             </td>
                             <td className="p-4">
-                                {historicEffectiveInterestRates(prestador.years)} %
+                                1 %
                             </td>
                         </tr>
                     ))}

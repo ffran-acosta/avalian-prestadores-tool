@@ -37,8 +37,8 @@ const YearTable: React.FC<YearPage> = ({ years }) => {
                   {mes.valor}%
                 </td>
               ))}
-              <td className="font-bold">{oneYearNominalInterestRates(year.meses)} %</td>
-              <td className="font-bold">{oneYearEffectiveInterestRates(year.meses)}%</td>
+              <td className="font-bold">1 %</td>
+              <td className="font-bold">1 %</td>
             </tr>
           ))}
         </tbody>

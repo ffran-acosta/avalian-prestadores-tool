@@ -102,7 +102,7 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
             </div>
 
             {/* <button onClick={calculateSum}>Calcular suma</button> */}
-            <p>Suma: {calculateSum()}</p>
+            <p>Suma: 1</p>
         </div>
     );
 };

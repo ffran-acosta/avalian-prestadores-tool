@@ -26,7 +26,6 @@ export const prestadoresRequest = async () => {
                     Authorization: `Bearer ${token}`
                 }
             });
-            console.log(response.data);
             return response?.data;
         }
     } catch (error) {
@@ -38,7 +37,7 @@ export const createPrestadorRequest = async (prestador: Prestador) => {
     try {
         const token = getAuthToken();
         const userId = getUserId();
-
+        console.log(userId);
         if (token && userId) {
             prestador.userId = userId;
 
@@ -51,7 +50,6 @@ export const createPrestadorRequest = async (prestador: Prestador) => {
                     },
                 }
             );
-
             return response?.data;
         }
     } catch (error) {

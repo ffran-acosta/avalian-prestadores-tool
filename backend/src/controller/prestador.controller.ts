@@ -18,7 +18,6 @@ export const prestadorController = {
         try {
             const { id, userId, prestador: nombrePrestador, localidad, tipo, notas, years } = req.body as Prestador;
 
-            // Verificar si el ID está presente
             if (!id) {
                 return res.status(400).json({ error: 'El ID del prestador es obligatorio' });
             }
@@ -34,8 +33,8 @@ export const prestadorController = {
             };
 
             await localDb.none(
-                'INSERT INTO prestadores (id, user_id, prestador, localidad, tipo, notas, years) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-                [newPrestador.id, newPrestador.userId, newPrestador.prestador, newPrestador.localidad, newPrestador.tipo, newPrestador.notas, JSON.stringify(newPrestador.years)]
+                'INSERT INTO prestadores (id, user_id, prestador, localidad, tipo, notas, years) VALUES ($1, $2, $3, $4, $5, $6, CAST($7 AS JSONB[]))',
+                [newPrestador.id, newPrestador.userId, newPrestador.prestador, newPrestador.localidad, newPrestador.tipo, newPrestador.notas, newPrestador.years]
             );
             res.status(201).json({ message: 'Prestador creado correctamente' });
         } catch (error) {

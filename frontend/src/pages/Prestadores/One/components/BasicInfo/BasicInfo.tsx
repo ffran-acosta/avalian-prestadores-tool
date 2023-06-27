@@ -21,8 +21,8 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                         <td>{prestador.prestador}</td>
                         <td>{prestador.localidad}</td>
                         <td>{prestador.tipo}</td>
-                        <td>{historicNominalInterestRates(prestador.years)} %</td>
-                        <td>{historicEffectiveInterestRates(prestador.years)} %</td>
+                        <td>1 %</td>
+                        <td>1 %</td>
                     </tr>
                 </tbody>
             </table>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createPrestadorRequest } from '../../../../../services';
-import { Prestador } from '../../../../../model';
+import { Prestador, Year, Mes } from '../../../../../model';
 
 interface ModalCrearPrestadorProps {
     onClose: () => void;
@@ -25,8 +25,29 @@ const ModalCrearPrestador: React.FC<ModalCrearPrestadorProps> = ({ onClose }) =>
         }));
     };
 
+    const handleYearInputChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setPrestadorData((prevData) => {
+            const years = [...prevData.years];
+            years[index] = { ...years[index], [name]: value };
+            return { ...prevData, years };
+        });
+    };
+
+    const handleMonthInputChange = (yearIndex: number, monthIndex: number, e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setPrestadorData((prevData) => {
+            const years = [...prevData.years];
+            const months = [...years[yearIndex].meses];
+            months[monthIndex] = { ...months[monthIndex], [name]: value };
+            years[yearIndex] = { ...years[yearIndex], meses: months };
+            return { ...prevData, years };
+        });
+    };
+
     const handleCrearPrestador = async () => {
         try {
+            console.log(JSON.stringify(prestadorData));
             await createPrestadorRequest(prestadorData);
             onClose();
         } catch (error) {
@@ -34,11 +55,22 @@ const ModalCrearPrestador: React.FC<ModalCrearPrestadorProps> = ({ onClose }) =>
         }
     };
 
+    
+    
+    const handleAddYear = () => {
+        const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+        setPrestadorData((prevData) => {
+            const newMonths: Mes[] = months.map((month) => ({ mes: month, valor: 0 }));
+            const newYear: Year = { year: 0, meses: newMonths };
+            return { ...prevData, years: [...prevData.years, newYear] };
+        });
+    };
+
     return (
         <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
             <div className="bg-white p-4 rounded-lg">
                 <h2 className="text-xl font-bold mb-4">Crear Nuevo Prestador</h2>
-                <form>
+                <form className="grid grid-cols-2 gap-4">
                     <div className="mb-4">
                         <label className="block font-bold mb-1" htmlFor="id">
                             ID
@@ -91,7 +123,52 @@ const ModalCrearPrestador: React.FC<ModalCrearPrestadorProps> = ({ onClose }) =>
                             className="border border-gray-400 p-2 rounded-md w-full"
                         />
                     </div>
-                    <div className="flex justify-between">
+                    <div className="mb-4 col-span-2">
+                        <div className="grid grid-cols-13 gap-4">
+                            {prestadorData.years.map((year, yearIndex) => (
+                                <React.Fragment key={yearIndex}>
+                                    <div className="col-span-12">
+                                        <label className="block font-bold mb-1" htmlFor={`year-${yearIndex}`}>
+                                            AÑO:
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id={`year-${yearIndex}`}
+                                            name="year"
+                                            value={year.year}
+                                            onChange={(e) => handleYearInputChange(yearIndex, e)}
+                                            className="border border-gray-400 p-2 rounded-md w-full"
+                                        />
+                                    </div>
+                                    {year.meses.map((mes, monthIndex) => (
+                                        <div key={monthIndex} className="col-span-1">
+                                            <label className="block font-bold mb-1" htmlFor={`valor-${yearIndex}-${monthIndex}`}>
+                                                {mes.mes}:
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id={`valor-${yearIndex}-${monthIndex}`}
+                                                name="valor"
+                                                value={mes.valor}
+                                                onChange={(e) => handleMonthInputChange(yearIndex, monthIndex, e)}
+                                                className="border border-gray-400 p-2 rounded-md w-full"
+                                            />
+                                        </div>
+                                    ))}
+                                </React.Fragment>
+                            ))}
+                        </div>
+                        <div className="flex justify-between">
+                            <button
+                                type="button"
+                                onClick={handleAddYear}
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            >
+                                Agregar Año
+                            </button>
+                        </div>
+                    </div>
+                    <div className="col-span-2 flex justify-between">
                         <button
                             type="button"
                             onClick={onClose}

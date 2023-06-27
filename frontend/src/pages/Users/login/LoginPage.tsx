@@ -38,7 +38,6 @@ const Login: React.FC = () => {
             setUser(response.data.user)
             setLogin(true)
             navitgate('/prestadores')
-            console.log(response);
         }
     }
 
