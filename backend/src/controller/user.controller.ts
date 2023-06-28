@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 
 import { localDb } from '../database';
 import { User } from '../models';
-
-import jwt from 'jsonwebtoken';
 import { encryptPassword, comparePasswords, generateJwtSecret } from '../utils';
 
 export const userController = {
@@ -45,7 +44,6 @@ export const userController = {
             // Generate a JWT token with a self-generated secret key
             const jwtSecret = generateJwtSecret();
             const token: string = await jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
-            // Return the token to the client
             res.json({ user, token })
         } catch (error) {
             console.error('Error during login:', error);
