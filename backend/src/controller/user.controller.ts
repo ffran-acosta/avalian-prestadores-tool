@@ -17,6 +17,16 @@ export const userController = {
         }
     },
 
+    getUsersByEmail: async (_req: Request, res: Response) => {
+        try {
+            const users = await localDb.any<{ name: string; email: string }>('SELECT name, email FROM users');
+            res.json(users);
+        } catch (error) {
+            console.error('Error retrieving users:', error);
+            res.status(500).json({ error: 'Failed to retrieve users' });
+        }
+    },
+
     getUserById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params

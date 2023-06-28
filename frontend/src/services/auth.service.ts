@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Prestador } from "../model";
+import { Prestador, User } from "../model";
 import { getAuthToken, getUserId } from "../store";
 
 export const loginRequest = async (name: string, password: string) => {
@@ -16,6 +16,11 @@ export const singupRequest = async (name: string, email: string, password: strin
         password: password
     })
 }
+
+export const usersRegisterRequest = async (): Promise<User[]> => {
+    const response = await axios.get<User[]>('http://localhost:3031/users/checkinfo');
+    return response.data;
+};
 
 export const prestadoresRequest = async () => {
     try {

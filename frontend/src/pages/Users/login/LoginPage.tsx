@@ -67,7 +67,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="flex justify-between items-center">
                     <span className="text-sm">No tenes cuenta?</span>                   
-                    <Link to='/singup' className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-md text-sm font-medium">
+                    <Link to='/signup' className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-md text-sm font-medium">
                         <button>Registrate</button> 
                     </Link>
                 </div>
