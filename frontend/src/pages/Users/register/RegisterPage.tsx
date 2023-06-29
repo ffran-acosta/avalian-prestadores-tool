@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { singupRequest, usersRegisterRequest } from '../../../services';
+import { singupRequest, userExists } from '../../../services';
 import { useNavigate } from 'react-router-dom';
 
 const Register: React.FC = () => {
@@ -29,7 +29,7 @@ const Register: React.FC = () => {
 
     const handleRegister = async () => {
         try {
-            const users = await usersRegisterRequest();
+            const users = await userExists();
             const existingUser = users.find(user => user.name === username || user.email === email);
             if (existingUser) {
                 setFieldError('El nombre de usuario o el correo electrónico ya están en uso');

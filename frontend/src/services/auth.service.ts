@@ -17,7 +17,7 @@ export const singupRequest = async (name: string, email: string, password: strin
     })
 }
 
-export const usersRegisterRequest = async (): Promise<User[]> => {
+export const userExists = async (): Promise<User[]> => {
     const response = await axios.get<User[]>('http://localhost:3031/users/checkinfo');
     return response.data;
 };

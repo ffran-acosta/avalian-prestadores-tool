@@ -11,4 +11,4 @@ export const VeloresReferenciales = [
     { "mes": "OCT", "valor": 0 },
     { "mes": "NOV", "valor": 0 },
     { "mes": "DIC", "valor": 0 }
-]
+]                                                                                                                                                                        

@@ -30,9 +30,3 @@ export const getUserId = () => {
     }
     return null;
 };
-
-
-// export const useProfileStore = create<ProfileState>((set) => ({
-//     profileData: null,
-//     setProfileData: (data) => set(() => ({ profileData: data })),
-// }));
