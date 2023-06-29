@@ -15,19 +15,26 @@ const Login: React.FC = () => {
     const setUser = useStore(state => state.setUser);
     const setLogin = useStore(state => state.setIsLoggedIn);
 
-    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(event.target.value);
-    };
-
-    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        if (name === 'username') {
+            setUsername(value);
+        } 
+        if (name === 'password') {
+            setPassword(value);
+        } 
     };
 
     const handleToggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleLogin = async () => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (!username || !password) {
+            setFieldError('Hay campos incompletos');
+            return;
+        }
         try {
             const users = await userExists();
             const existingUser = users.find(user => user.name === username || user.email === username);
@@ -47,15 +54,6 @@ const Login: React.FC = () => {
         }
     };
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (!username || !password) {
-            setFieldError('HAY CAMPOS INCOMPLETOS');
-            return;
-        }
-        handleLogin();
-    };
-
     const inputStyles = 'w-full border border-gray-300 rounded-md py-2 px-3 text-sm text-gray-700';
     const buttonStyles = 'py-2 px-4 rounded-md text-sm font-medium';
 
@@ -68,8 +66,9 @@ const Login: React.FC = () => {
                     <input
                         type="text"
                         id="username"
+                        name="username"
                         value={username}
-                        onChange={handleUsernameChange}
+                        onChange={handleInputChange}
                         className={inputStyles}
                     />
                 </div>
@@ -79,8 +78,9 @@ const Login: React.FC = () => {
                         <input
                             type={showPassword ? 'text' : 'password'}
                             id="password"
+                            name="password"
                             value={password}
-                            onChange={handlePasswordChange}
+                            onChange={handleInputChange}
                             className={inputStyles}
                         />
                         <button
@@ -98,7 +98,7 @@ const Login: React.FC = () => {
                     <Link to="#" className="text-blue-600 hover:underline text-sm">
                         Olvidaste tu contraseña?
                     </Link>
-                    <button className={`bg-blue-500 hover:bg-[#1139bc] text-white ${buttonStyles}`}>
+                    <button className={`bg-blue-500 hover:bg-[#0d48a6] text-white ${buttonStyles}`}>
                         Login
                     </button>
                 </div>
