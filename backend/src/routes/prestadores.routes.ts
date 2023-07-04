@@ -4,11 +4,16 @@ import { reqAuth } from '../middleware';
 import { prestadorValidations } from '../validations';
 const router = express.Router();
 
-// crud
+// prestadores
 router.get('/all', reqAuth, prestadorController.getPrestadores);
 router.post('/create', reqAuth, prestadorValidations.validateCreatePrestador, prestadorController.createPrestador);
-router.post('/create-note', reqAuth, prestadorController.createNota);
-router.put('/update-note', reqAuth, prestadorController.updateNota);
+
+// notes
+router.post('/create-note/:id', reqAuth, prestadorController.createNota);
+router.put('/update-note/:id/:index', reqAuth, prestadorController.updateNota);
+
+// years
+
 
 export default router;
 
