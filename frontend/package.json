@@ -13,6 +13,7 @@
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.13.0",
     "react-dom": "^18.2.0",
@@ -22,6 +23,8 @@
     "zustand": "^4.3.8"
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^20.3.3",
     "@types/react": "^18.0.28",
     "@types/react-datepicker": "^4.11.2",
     "@types/react-dom": "^18.2.4",

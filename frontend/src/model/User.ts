@@ -13,8 +13,3 @@ export interface UserState {
     setToken: (token: string | null) => void;
     setIsLoggedIn: (isLoggedIn: boolean) => void;
 }
-
-// export interface ProfileState {
-//     profileData: any; // Replace with the actual type for profile data
-//     setProfileData: (data: any) => void; // Replace with the actual type for profile data
-// }
