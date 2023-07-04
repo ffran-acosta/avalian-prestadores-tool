@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import { Prestadores } from '../../../data';
 import { Prestador } from '../../../model';
 import { BasicInfo, Notes, PeriodCalc, ReferentialValues, YearTable } from '.';
 import { prestadoresRequest } from '../../../services';
