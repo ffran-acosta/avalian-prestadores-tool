@@ -7,3 +7,8 @@ export interface PrestadorPage{
 export interface YearPage {
     years: Year[]
 }
+
+export interface ModalPage {
+    prestador?: Prestador;
+    onClose: () => void;
+}

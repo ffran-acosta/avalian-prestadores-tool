@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { createNotaRequest } from '../../../../../../services';
+import { ModalPage } from '../../../../../../model';
 
-interface ModalCreateNotesProps {
-    prestadorId: number;
-    onClose: () => void;
-}
-
-const ModalCreateNotes: React.FC<ModalCreateNotesProps> = ({ prestadorId, onClose }) => {
+const ModalCreateNotes: React.FC<ModalPage> = ({ prestador, onClose }) => {
     const [nota, setNota] = useState('');
     const [error, setError] = useState('');
 
@@ -21,8 +17,9 @@ const ModalCreateNotes: React.FC<ModalCreateNotesProps> = ({ prestadorId, onClos
                 setError('El campo de nota no puede estar vacío');
                 return;
             }
-
-            await createNotaRequest(prestadorId, nota);
+            if (prestador) {
+                await createNotaRequest(prestador.id, nota);
+            }
             onClose();
             window.location.reload();
         } catch (error) {

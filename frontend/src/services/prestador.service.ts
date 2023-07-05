@@ -20,10 +20,8 @@ export const createPrestadorRequest = async (prestador: Prestador) => {
     try {
         const config = getRequestConfig();
         const userId = getUserId();
-        console.log(userId);
         if (config && userId) {
             prestador.userId = userId;
-
             const response = await axios.post(
                 `${BASE_URL}/api/prestadores/create`,
                 prestador,

@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { createPrestadorRequest } from '../../../../../services';
-import { Prestador, Year, Mes } from '../../../../../model';
+import { Prestador, Year, Mes, ModalPage } from '../../../../../model';
 
-interface ModalCrearPrestadorProps {
-    onClose: () => void;
-}
-
-const ModalCrearPrestador: React.FC<ModalCrearPrestadorProps> = ({ onClose }) => {
+const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
     const [prestadorData, setPrestadorData] = useState<Prestador>({
         id: 0,
         userId: 0,

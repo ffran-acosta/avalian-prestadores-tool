@@ -54,7 +54,7 @@ const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
       </div>
 
       {isModalCrearOpen && (
-        <ModalCreateNotes prestadorId={prestador.id} onClose={closeModalCreate} />
+        <ModalCreateNotes prestador={prestador} onClose={closeModalCreate} />
       )}
 
       {isModalEditarOpen && (

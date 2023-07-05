@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { deleteNotaRequest, updateNotaRequest } from '../../../../../../services';
-import { Prestador } from '../../../../../../model';
+import { ModalPage } from '../../../../../../model';
 
-interface ModalEditNotesProps {
-    prestador: Prestador;
-    onClose: () => void;
-}
 
-const ModalEditNotes: React.FC<ModalEditNotesProps> = ({ prestador, onClose }) => {
-    const [notasData, setNotasData] = useState<string[]>(prestador.notas);
-
+const ModalEditNotes: React.FC<ModalPage> = ({ prestador, onClose }) => {
+    const [notasData, setNotasData] = useState<string[]>(prestador?.notas || []);
     const handleNotaChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
         const updatedNotas = [...notasData];
         updatedNotas[index] = e.target.value;
@@ -19,8 +14,9 @@ const ModalEditNotes: React.FC<ModalEditNotesProps> = ({ prestador, onClose }) =
     const handleUpdateNote = async (index: number) => {
         try {
             const updatedNota = notasData[index];
-            console.log(updatedNota, prestador.id, index);
-            await updateNotaRequest(prestador.id, index, updatedNota);
+            if (prestador) {
+                await updateNotaRequest(prestador.id, index, updatedNota);
+            }
             onClose();
             window.location.reload();
         } catch (error) {
@@ -32,7 +28,9 @@ const ModalEditNotes: React.FC<ModalEditNotesProps> = ({ prestador, onClose }) =
         try {
             const confirmDelete = window.confirm('¿Estás seguro de que deseas borrar esta nota?');
             if (confirmDelete) {
-                await deleteNotaRequest(prestador.id, index);
+                if (prestador) {
+                    await deleteNotaRequest(prestador.id, index);
+                }
                 onClose();
                 window.location.reload();
             }
