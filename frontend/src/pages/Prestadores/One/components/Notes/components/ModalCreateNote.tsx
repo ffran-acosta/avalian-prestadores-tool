@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
 import { createNotaRequest } from '../../../../../../services';
 
-interface ModalCrearNotasProps {
+interface ModalCreateNotesProps {
     prestadorId: number;
     onClose: () => void;
 }
 
-const ModalCrearNotas: React.FC<ModalCrearNotasProps> = ({ prestadorId, onClose }) => {
+const ModalCreateNotes: React.FC<ModalCreateNotesProps> = ({ prestadorId, onClose }) => {
     const [nota, setNota] = useState('');
+    const [error, setError] = useState('');
 
     const handleNotaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNota(e.target.value);
+        setError('');
     };
 
-    const handleCrearNota = async () => {
+    const handleCreateNote = async () => {
         try {
+            if (nota.trim() === '') {
+                setError('El campo de nota no puede estar vacío');
+                return;
+            }
+
             await createNotaRequest(prestadorId, nota);
             onClose();
+            window.location.reload();
         } catch (error) {
-            console.error('Error al crear la nota:', error);
+            console.error('Error creating the note:', error);
         }
     };
 
@@ -31,7 +39,7 @@ const ModalCrearNotas: React.FC<ModalCrearNotasProps> = ({ prestadorId, onClose 
                         <label className="block font-bold mb-1" htmlFor="nota">
                             Nota
                         </label>
-                        <div >
+                        <div>
                             <input
                                 type="text"
                                 id="nota"
@@ -40,6 +48,7 @@ const ModalCrearNotas: React.FC<ModalCrearNotasProps> = ({ prestadorId, onClose 
                                 onChange={handleNotaChange}
                                 className="border border-gray-400 p-2 rounded-md w-full"
                             />
+                            {error && <p className="text-red-500">{error}</p>}
                         </div>
                     </div>
                     <div className="flex justify-end">
@@ -52,7 +61,7 @@ const ModalCrearNotas: React.FC<ModalCrearNotasProps> = ({ prestadorId, onClose 
                         </button>
                         <button
                             type="button"
-                            onClick={handleCrearNota}
+                            onClick={handleCreateNote}
                             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                         >
                             Guardar Nota
@@ -64,4 +73,4 @@ const ModalCrearNotas: React.FC<ModalCrearNotasProps> = ({ prestadorId, onClose 
     );
 };
 
-export default ModalCrearNotas;
+export default ModalCreateNotes;

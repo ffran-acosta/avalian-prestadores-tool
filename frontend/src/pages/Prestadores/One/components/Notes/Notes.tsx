@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import { PrestadorPage } from '../../../../../model';
-import ModalCrearNotas from './components/ModalCreateNote';
-import ModalEditarNotas from './components/ModalUpdateNotes';
+import ModalCreateNotes from './components/ModalCreateNote';
+import ModalUpdateNotes from './components/ModalUpdateNotes';
 
 const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
-  const [isModalCrearOpen, setIsModalCrearOpen] = useState(false);
-  const [isModalEditarOpen, setIsModalEditarOpen] = useState(false);
+  
+  const [isModalCrearOpen, setIsModalCreateOpen] = useState(false);
+  const [isModalEditarOpen, setIsModalEditOpen] = useState(false);
 
   const openModalCrear = () => {
-    setIsModalCrearOpen(true);
+    setIsModalCreateOpen(true);
   };
 
-  const closeModalCrear = () => {
-    setIsModalCrearOpen(false);
+  const closeModalCreate = () => {
+    setIsModalCreateOpen(false);
   };
 
-  const openModalEditar = () => {
-    setIsModalEditarOpen(true);
+  const openModalEdit = () => {
+    setIsModalEditOpen(true);
   };
 
-  const closeModalEditar = () => {
-    setIsModalEditarOpen(false);
+  const closeModalEdit = () => {
+    setIsModalEditOpen(false);
   };
 
   return (
@@ -42,18 +43,18 @@ const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
         </button>
         <button
           className='mt-2 ml-1 px-4 py-2 bg-blue-500 text-white rounded'
-          onClick={openModalEditar}
+          onClick={openModalEdit}
         >
           Editar
         </button>
       </div>
 
       {isModalCrearOpen && (
-        <ModalCrearNotas prestadorId={prestador.id} onClose={closeModalCrear} />
+        <ModalCreateNotes prestadorId={prestador.id} onClose={closeModalCreate} />
       )}
 
       {isModalEditarOpen && (
-        <ModalEditarNotas prestadorId={prestador.id} notas={prestador.notas} onClose={closeModalEditar} />
+        <ModalUpdateNotes prestador={prestador} onClose={closeModalEdit} />
       )}
     </div>
   );

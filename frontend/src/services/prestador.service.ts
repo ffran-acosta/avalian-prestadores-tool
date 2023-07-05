@@ -68,6 +68,7 @@ export const updateNotaRequest = async (prestadorId: number, notaIndex: number, 
     try {
         const token = getAuthToken();
         if (token) {
+            console.log(prestadorId, notaIndex, newNota);
             const response = await axios.put(
                 `${BASE_URL}/api/prestadores/update-note/${prestadorId}/${notaIndex}`,
                 { newNota },
