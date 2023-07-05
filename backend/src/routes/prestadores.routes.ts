@@ -11,6 +11,7 @@ router.post('/create', reqAuth, prestadorValidations.validateCreatePrestador, pr
 // notes
 router.post('/create-note/:id', reqAuth, prestadorController.createNota);
 router.put('/update-note/:id/:index', reqAuth, prestadorController.updateNota);
+router.delete('/delete-note/:id/:index', reqAuth, prestadorController.deleteNota);
 
 // years
 

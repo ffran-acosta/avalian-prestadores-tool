@@ -22,4 +22,3 @@ export const userExists = async (): Promise<User[]> => {
     const response = await axios.get<User[]>(`${BASE_URL}/users/checkinfo`);
     return response.data;
 }
-

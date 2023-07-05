@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { updateNotaRequest } from '../../../../../../services';
+import { deleteNotaRequest, updateNotaRequest } from '../../../../../../services';
 import { Prestador } from '../../../../../../model';
 
 interface ModalEditNotesProps {
@@ -30,14 +30,16 @@ const ModalEditNotes: React.FC<ModalEditNotesProps> = ({ prestador, onClose }) =
 
     const handleDeleteNote = async (index: number) => {
         try {
-            await updateNotaRequest(prestador.id, index, '');
-            onClose();
-            window.location.reload();
+            const confirmDelete = window.confirm('¿Estás seguro de que deseas borrar esta nota?');
+            if (confirmDelete) {
+                await deleteNotaRequest(prestador.id, index);
+                onClose();
+                window.location.reload();
+            }
         } catch (error) {
             console.error('Error deleting the note:', error);
         }
     };
-
     return (
         <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 w-full">
             <div className="bg-white p-4 rounded-lg w-2/4">

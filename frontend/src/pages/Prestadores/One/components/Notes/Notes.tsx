@@ -24,6 +24,8 @@ const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
     setIsModalEditOpen(false);
   };
 
+  const showEditButton = prestador.notas.length > 0
+
   return (
     <div className='flex pt-10 w-full justify-center flex-wrap'>
       <div className='flex w-full justify-center'>
@@ -41,12 +43,14 @@ const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
         >
           Crear Nota
         </button>
-        <button
-          className='mt-2 ml-1 px-4 py-2 bg-blue-500 text-white rounded'
-          onClick={openModalEdit}
-        >
-          Editar
-        </button>
+        {showEditButton && (
+          <button
+            className='mt-2 ml-1 px-4 py-2 bg-blue-500 text-white rounded'
+            onClick={openModalEdit}
+          >
+            Editar
+          </button>
+        )}
       </div>
 
       {isModalCrearOpen && (

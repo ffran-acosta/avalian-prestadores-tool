@@ -30,3 +30,15 @@ export const getUserId = () => {
     }
     return null;
 };
+
+export const getRequestConfig = () => {
+    const token = getAuthToken();
+    if (token) {
+        return {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
+    }
+    return null;
+};
