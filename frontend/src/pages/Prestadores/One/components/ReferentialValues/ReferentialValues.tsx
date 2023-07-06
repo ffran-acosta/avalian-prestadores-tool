@@ -1,15 +1,38 @@
-import { VeloresReferenciales } from "../../../../../data";
-import { Mes } from "../../../../../model";
-import { ninetyPercent, ninetyPercentArray, oneYearNominalInterestRates, oneYearEffectiveInterestRates } from "../../../../../util";
+import { useEffect, useState } from 'react';
+import { getRefValuesRequest } from '../../../../../services/refValues.service';
+import { ninetyPercent, ninetyPercentArray, oneYearEffectiveInterestRates, oneYearNominalInterestRates } from '../../../../../util';
+import { Mes } from '../../../../../model';
+import ModalEditarValores from './components/ModalRefValues';
+
 
 const ReferentialValues = () => {
+    const [refValues, setRefValues] = useState<Mes[]>([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        const fetchRefValues = async () => {
+            try {
+                const data = await getRefValuesRequest();
+                setRefValues(data);
+            } catch (error) {
+                console.error('Error al obtener los valores de referencia:', error);
+            }
+        };
+
+        fetchRefValues();
+    }, []);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
     return (
         <div>
             <table>
                 <thead>
                     <tr>
                         <th></th>
-                        {VeloresReferenciales.map((item: Mes) => (
+                        {refValues.map((item) => (
                             <th key={item.mes}>{item.mes}</th>
                         ))}
                         <th>Tot Lineal</th>
@@ -19,18 +42,18 @@ const ReferentialValues = () => {
                 <tbody>
                     <tr>
                         <td className="font-bold">SSS</td>
-                        {VeloresReferenciales.map((item: Mes) => (
+                        {refValues.map((item) => (
                             <td key={item.mes}>{item.valor}</td>
                         ))}
-                        <td className="font-bold">{oneYearNominalInterestRates(VeloresReferenciales)} %</td>
-                        <td className="font-bold">{oneYearEffectiveInterestRates(VeloresReferenciales)} %</td>
+                        <td className="font-bold">{oneYearNominalInterestRates(refValues)} %</td>
+                        <td className="font-bold">{oneYearEffectiveInterestRates(refValues)} %</td>
                     </tr>
                     <tr>
                         <td className="font-bold">90%</td>
-                        {VeloresReferenciales.map((item: Mes) => (
+                        {refValues.map((item) => (
                             <td key={item.mes}>{ninetyPercent(item.valor)}</td>
                         ))}
-                        <td className="font-bold">{ninetyPercentArray(VeloresReferenciales)} %</td>
+                        <td className="font-bold">{ninetyPercentArray(refValues)} %</td>
                         <td className="font-bold"></td>
                     </tr>
                     <tr>
@@ -41,11 +64,13 @@ const ReferentialValues = () => {
             <div className='flex w-full justify-center'>
                 <button
                     className='mt-2 px-4 py-2 bg-blue-500 text-white rounded'
-                    // onClick={() => setModalOpen(true)}
+                    onClick={openModal}
                 >
                     Editar Valores
                 </button>
             </div>
+
+            {isModalOpen && <ModalEditarValores onClose={() => setIsModalOpen(false)} />}
         </div>
     );
 };

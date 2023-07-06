@@ -40,3 +40,23 @@ VALUES
         '{"year": 2023, "meses": [{"mes": "ENE", "valor": 4}, {"mes": "FEB", "valor": 6}, {"mes": "MAR", "valor": 2}, {"mes": "ABR", "valor": 8}, {"mes": "MAY", "valor": 3}, {"mes": "JUN", "valor": 7}, {"mes": "JUL", "valor": 5}, {"mes": "AGO", "valor": 9}, {"mes": "SEP", "valor": 1}, {"mes": "OCT", "valor": 5}, {"mes": "NOV", "valor": 2}, {"mes": "DIC", "valor": 7}]}'
     ]::JSONB[]
 );
+
+CREATE TABLE ref_values (
+    mes VARCHAR(3) PRIMARY KEY,
+    valor INT
+);
+
+INSERT INTO ref_values (mes, valor)
+VALUES 
+    ('ENE', 0),
+    ('FEB', 0),
+    ('MAR', 0),
+    ('ABR', 0),
+    ('MAY', 0),
+    ('JUN', 0),
+    ('JUL', 0),
+    ('AGO', 0),
+    ('SEP', 0),
+    ('OCT', 0),
+    ('NOV', 0),
+    ('DIC', 0);
