@@ -33,6 +33,7 @@ const ModalEditarValores: React.FC<ModalEditarValoresProps> = ({ onClose }) => {
         try {
             await updateRefValuesRequest(refValues);
             onClose();
+            window.location.reload();
         } catch (error) {
             console.error('Error al actualizar los valores de referencia:', error);
         }
@@ -54,7 +55,7 @@ const ModalEditarValores: React.FC<ModalEditarValoresProps> = ({ onClose }) => {
                                     id={`valor-${index}`}
                                     name={`valor-${index}`}
                                     value={item.valor !== null ? item.valor.toString() : ''}
-                                    step="any" // Permite números flotantes con punto
+                                    step="any"
                                     onChange={(e) => handleValueChange(index, e)}
                                     className="border border-gray-400 p-2 rounded-md flex-grow"
                                 />
