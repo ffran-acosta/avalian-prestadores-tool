@@ -76,7 +76,7 @@ const YearTable: React.FC<YearPage> = ({ years, prestador }) => {
       )}
 
       {showEditModal && (
-        <ModalEditValues years={years} onClose={handleEditModalClose} />
+        <ModalEditValues prestador={prestador} years={years} onClose={handleEditModalClose} />
       )}
     </div>
   );

@@ -31,7 +31,7 @@ export const yearController = {
             if (!prestadorExists) {
                 return res.status(404).json({ error: 'Prestador not found' });
             }
-            await localDb.none('UPDATE prestadores SET years = $1 WHERE id = $2', [updatedYears, prestadorId]);
+            await localDb.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
             res.status(200).json({ message: 'Years updated successfully' });
         } catch (error) {
             console.error('Error updating years:', error);
@@ -47,11 +47,8 @@ export const yearController = {
             if (!prestadorExists) {
                 return res.status(404).json({ error: 'Prestador not found' });
             }
-            if (prestadorExists.years.length > 0) {
-                return res.status(400).json({ error: 'Failed to delete year' });
-            }
             const updatedYears = prestadorExists.years.filter((year: Year) => year.year !== yearToDelete);
-            await localDb.none('UPDATE prestadores SET years = $1 WHERE id = $2', [updatedYears, prestadorId]);
+            await localDb.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
             res.status(200).json({ message: 'Year deleted successfully' });
         } catch (error) {
             console.error('Error deleting year:', error);

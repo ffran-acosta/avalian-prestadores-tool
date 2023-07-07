@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { ModalPage, Year } from '../../../../../../model';
+import { deleteYearRequest, updateYearsRequest } from '../../../../../../services';
 
 interface ModalEditValuesProps extends ModalPage {
     years: Year[];
 }
 
-const ModalEditValues: React.FC<ModalEditValuesProps> = ({ onClose, years }) => {
+const ModalEditValues: React.FC<ModalEditValuesProps> = ({ onClose, years, prestador }) => {
     const [editedYears, setEditedYears] = useState<Year[]>(years);
 
     const handleYearValueChange = (yearIndex: number, mesIndex: number, value: string) => {
@@ -17,12 +18,29 @@ const ModalEditValues: React.FC<ModalEditValuesProps> = ({ onClose, years }) => 
         }
     };
 
-    const handleDeleteYear = () => {
-        onClose();
+    const handleDeleteYear = async (year: number) => {
+        try {
+            if (prestador && prestador.id) {
+                const prestadorId: string = prestador.id.toString();
+                await deleteYearRequest(prestadorId, year);
+                // Realiza cualquier otra acción necesaria después de eliminar el año
+            }
+        } catch (error) {
+            console.error('Error deleting year:', error);
+        }
     };
 
-    const handleSaveChanges = () => {
-        onClose();
+    const handleSaveChanges = async () => {
+        try {
+            if (prestador && prestador.id) {
+                const prestadorId: string = prestador.id.toString();
+                await updateYearsRequest(prestadorId, editedYears);
+                onClose();
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error('Error updating years:', error);
+        }
     };
 
     return (
@@ -35,7 +53,7 @@ const ModalEditValues: React.FC<ModalEditValuesProps> = ({ onClose, years }) => 
                             <button
                                 type="button"
                                 className="text-red-500 hover:text-red-700"
-                                onClick={() => handleDeleteYear()}
+                                onClick={() => handleDeleteYear(year.year)}
                             >
                                 Eliminar Año
                             </button>
@@ -55,9 +73,10 @@ const ModalEditValues: React.FC<ModalEditValuesProps> = ({ onClose, years }) => 
                                             handleYearValueChange(
                                                 editedYears.findIndex((y) => y.year === year.year),
                                                 year.meses.findIndex((m) => m.mes === mes.mes),
-                                                e.target.value
+                                                e.currentTarget.value
                                             )
                                         }
+                                        onClick={(e) => (e.currentTarget.value = '')}
                                         className="border border-gray-400 p-2 rounded-md w-20 text-center"
                                     />
                                 </div>
