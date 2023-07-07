@@ -1,5 +1,5 @@
 import express from 'express';
-import { notasController, prestadorController, refValuesController } from '../controller';
+import { notasController, prestadorController, refValuesController, yearController } from '../controller';
 import { reqAuth } from '../middleware';
 import { prestadorValidations } from '../validations';
 const router = express.Router();
@@ -14,6 +14,9 @@ router.put('/update-note/:id/:index', reqAuth, notasController.updateNota);
 router.delete('/delete-note/:id/:index', reqAuth, notasController.deleteNota);
 
 // years
+router.post('/create-year/:id', reqAuth, yearController.createYear);
+router.put('/update-years/:id', reqAuth, yearController.updateYear);
+router.delete('/delete-year/:id/:year', reqAuth, yearController.deleteYear);
 
 // ref values
 router.get('/ref-values', reqAuth, refValuesController.getRefValues);

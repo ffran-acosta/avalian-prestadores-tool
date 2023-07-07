@@ -5,6 +5,7 @@ export interface PrestadorPage{
 }
 
 export interface YearPage {
+    prestador?: Prestador;
     years: Year[]
 }
 

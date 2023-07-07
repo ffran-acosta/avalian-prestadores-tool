@@ -41,17 +41,14 @@ export const userController = {
     login: async (req: Request, res: Response) => {
         try {
             const { name, password } = req.body;
-            // Check if the user exists in the database
             const user = await localDb.oneOrNone<User>('SELECT * FROM users WHERE name = $1', [name]);
             if (!user) {
                 return res.status(404).json({ error: 'User not found' });
             }
-            // Compare the provided password with the stored hash
             const passwordMatch = await comparePasswords(password, user.password);
             if (!passwordMatch) {
                 return res.status(401).json({ error: 'Invalid password' });
             }
-            // Generate a JWT token with a self-generated secret key
             const jwtSecret = generateJwtSecret();
             const token: string = await jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
             res.json({ user, token })

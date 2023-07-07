@@ -38,7 +38,7 @@ const PrestadorDetail = () => {
         <ReferentialValues />
       </div>
       <div className="flex w-full mt-4 justify-center">
-        <YearTable years={prestador.years} />
+        <YearTable prestador={prestador} years={prestador.years} />
       </div>
       <div className="flex w-full mt-4 justify-center">
         <PeriodCalc years={prestador.years} />
