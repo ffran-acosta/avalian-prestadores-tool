@@ -46,6 +46,7 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
             console.log(JSON.stringify(prestadorData));
             await createPrestadorRequest(prestadorData);
             onClose();
+            window.location.reload();
         } catch (error) {
             console.error('Error al crear el prestador:', error);
         }

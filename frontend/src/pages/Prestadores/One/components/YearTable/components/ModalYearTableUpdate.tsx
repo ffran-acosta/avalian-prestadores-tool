@@ -20,10 +20,13 @@ const ModalEditValues: React.FC<ModalEditValuesProps> = ({ onClose, years, prest
 
     const handleDeleteYear = async (year: number) => {
         try {
-            if (prestador && prestador.id) {
-                const prestadorId: string = prestador.id.toString();
-                await deleteYearRequest(prestadorId, year);
-                // Realiza cualquier otra acción necesaria después de eliminar el año
+            const confirmDelete = window.confirm(`¿Deseas borrar el año ${year}?`);
+            if (confirmDelete){
+                if (prestador && prestador.id) {
+                    const prestadorId: string = prestador.id.toString();
+                    await deleteYearRequest(prestadorId, year);
+                }
+                window.location.reload();
             }
         } catch (error) {
             console.error('Error deleting year:', error);

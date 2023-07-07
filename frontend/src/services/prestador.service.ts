@@ -33,3 +33,34 @@ export const createPrestadorRequest = async (prestador: Prestador) => {
         console.error('Error al crear el prestador:', error);
     }
 };
+
+export const updatePrestadorRequest = async (prestador: Prestador) => {
+    try {
+        const config = getRequestConfig();
+        if (config) {
+            const response = await axios.put(
+                `${BASE_URL}/api/prestadores/update/${prestador.id}`,
+                prestador,
+                config
+            );
+            return response?.data;
+        }
+    } catch (error) {
+        console.error('Error al actualizar el prestador:', error);
+    }
+};
+
+export const deletePrestadorRequest = async (prestadorId: string) => {
+    try {
+        const config = getRequestConfig();
+        if (config) {
+            const response = await axios.delete(
+                `${BASE_URL}/api/prestadores/delete/${prestadorId}`,
+                config
+            );
+            return response?.data;
+        }
+    } catch (error) {
+        console.error('Error al eliminar el prestador:', error);
+    }
+};

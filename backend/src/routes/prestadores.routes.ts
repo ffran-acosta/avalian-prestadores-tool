@@ -7,6 +7,8 @@ const router = express.Router();
 // prestadores
 router.get('/all', reqAuth, prestadorController.getPrestadores);
 router.post('/create', reqAuth, prestadorValidations.validateCreatePrestador, prestadorController.createPrestador);
+router.put('/update/:id', reqAuth, prestadorController.updatePrestador);
+router.delete('/delete/:id', reqAuth, prestadorController.deletePrestador);
 
 // notes
 router.post('/create-note/:id', reqAuth, notasController.createNota);

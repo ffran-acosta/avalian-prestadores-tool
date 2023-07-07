@@ -27,5 +27,46 @@ export const prestadorController = {
             console.error('Error creating prestador:', error);
             res.status(500).json({ error: 'Failed to create prestador' });
         }
-    }
+    },
+
+    updatePrestador: async (req: Request, res: Response) => {
+        try {
+            const prestadorId: string = req.params.id;
+            const { prestador, localidad, tipo }: Partial<Prestador> = req.body;
+
+            const prestadorExists = await localDb.oneOrNone<Prestador>('SELECT * FROM prestadores WHERE id = $1', [prestadorId]);
+            if (!prestadorExists) {
+                return res.status(404).json({ error: 'Prestador not found' });
+            }
+            const updatedPrestador: Prestador = {
+                ...prestadorExists,
+                prestador: prestador || prestadorExists.prestador,
+                localidad: localidad || prestadorExists.localidad,
+                tipo: tipo || prestadorExists.tipo,
+            };
+            await localDb.none(
+                'UPDATE prestadores SET prestador = $1, localidad = $2, tipo = $3 WHERE id = $4',
+                [updatedPrestador.prestador, updatedPrestador.localidad, updatedPrestador.tipo, prestadorId]
+            );
+            res.status(200).json({ message: 'Prestador updated successfully' });
+        } catch (error) {
+            console.error('Error updating prestador:', error);
+            res.status(500).json({ error: 'Failed to update prestador' });
+        }
+    },
+
+    deletePrestador: async (req: Request, res: Response) => {
+        try {
+            const prestadorId: string = req.params.id;
+            const prestadorExists = await localDb.oneOrNone<Prestador>('SELECT * FROM prestadores WHERE id = $1', [prestadorId]);
+            if (!prestadorExists) {
+                return res.status(404).json({ error: 'Prestador not found' });
+            }
+            await localDb.none('DELETE FROM prestadores WHERE id = $1', [prestadorId]);
+            res.status(200).json({ message: 'Prestador deleted successfully' });
+        } catch (error) {
+            console.error('Error deleting prestador:', error);
+            res.status(500).json({ error: 'Failed to delete prestador' });
+        }
+    },
 }
