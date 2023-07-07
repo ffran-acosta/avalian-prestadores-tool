@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PrestadorPage } from '../../../../../model';
 import { ModalPrestadorUpdate } from '..';
+import { oneYearNominalInterestRates } from '../../../../../util';
 
 const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
     const [showEditModal, setShowEditModal] = useState(false);
@@ -20,7 +21,7 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                         <th>Tipo</th>
                         <th>Total Lineal</th>
                         <th>Total Acumulado</th>
-                        <th>Acciones</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,7 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                         <td>{prestador.prestador}</td>
                         <td>{prestador.localidad}</td>
                         <td>{prestador.tipo}</td>
-                        <td>1%</td>
+                        <td>%</td>
                         <td>1%</td>
                         <td>
                             <button onClick={handleEditPrestador}>Editar Prestador</button>

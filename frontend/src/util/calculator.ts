@@ -45,10 +45,21 @@ export const ninetyPercent = (number: number) => {
     return result.toFixed(2);
 }
 
+export const ninetyTwoPercent = (number: number) => {
+    const result = number * 0.92;
+    return result.toFixed(2);
+}
+
 export const ninetyPercentArray = (meses: Mes[]) => {
     const acc = oneYearNominalInterestRates(meses)
     return ninetyPercent(acc)
 }
+
+export const ninetyTwoPercentArray = (meses: Mes[]) => {
+    const acc = oneYearNominalInterestRates(meses)
+    return ninetyTwoPercent(acc)
+}
+
 
 export const calculatePorcent = (percentages: number, number: number) => {
     const percentagesConverted = percentages / 100

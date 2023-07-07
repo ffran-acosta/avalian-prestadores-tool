@@ -24,6 +24,7 @@ const PrestadorUpdateModal: React.FC<ModalEditPrestadorProps> = ({ prestador, on
     try {
       await updatePrestadorRequest(editedPrestador);
       onClose();
+      window.location.reload();
 
     } catch (error) {
       console.error('Error updating prestador:', error);

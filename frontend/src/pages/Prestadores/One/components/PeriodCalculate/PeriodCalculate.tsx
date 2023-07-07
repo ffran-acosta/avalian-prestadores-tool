@@ -102,7 +102,8 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
             </div>
 
             {/* <button onClick={calculateSum}>Calcular suma</button> */}
-            <p>Suma: 1</p>
+            <p className='text-lg underline bg-slate-300'>Total Lineal: {calculateSum()}%</p>
+            <p className='text-lg underline bg-slate-300'>Total Acumulado: ?? %</p>
         </div>
     );
 };

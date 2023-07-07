@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRefValuesRequest } from '../../../../../services/refValues.service';
-import { ninetyPercent, ninetyPercentArray, oneYearEffectiveInterestRates, oneYearNominalInterestRates } from '../../../../../util';
+import { ninetyPercent, ninetyPercentArray, ninetyTwoPercent, ninetyTwoPercentArray, oneYearEffectiveInterestRates, oneYearNominalInterestRates } from '../../../../../util';
 import { Mes } from '../../../../../model';
 import ModalEditarValores from './components/ModalRefValues';
 
@@ -43,21 +43,25 @@ const ReferentialValues = () => {
                     <tr>
                         <td className="font-bold">SSS</td>
                         {refValues.map((item) => (
-                            <td key={item.mes}>{item.valor}</td>
+                            <td key={item.mes}>{item.valor}%</td>
                         ))}
-                        <td className="font-bold">{oneYearNominalInterestRates(refValues)} %</td>
-                        <td className="font-bold">{oneYearEffectiveInterestRates(refValues)} %</td>
+                        <td className="font-bold">{oneYearNominalInterestRates(refValues)}%</td>
+                        <td className="font-bold">{oneYearEffectiveInterestRates(refValues)}%</td>
                     </tr>
                     <tr>
                         <td className="font-bold">90%</td>
                         {refValues.map((item) => (
-                            <td key={item.mes}>{ninetyPercent(item.valor)}</td>
+                            <td key={item.mes}>{ninetyPercent(item.valor)}%</td>
                         ))}
-                        <td className="font-bold">{ninetyPercentArray(refValues)} %</td>
+                        <td className="font-bold">{ninetyPercentArray(refValues)}%</td>
                         <td className="font-bold"></td>
                     </tr>
                     <tr>
-                        <td className="font-bold">???</td>
+                        <td className="font-bold">92%</td>
+                        {refValues.map((item) => (
+                            <td key={item.mes}>{ninetyTwoPercent(item.valor)}%</td>
+                        ))}
+                        <td className="font-bold">{ninetyTwoPercentArray(refValues)}%</td>
                     </tr>
                 </tbody>
             </table>
@@ -66,7 +70,7 @@ const ReferentialValues = () => {
                     className='mt-2 px-4 py-2 bg-blue-500 text-white rounded'
                     onClick={openModal}
                 >
-                    Editar Valores
+                    Editar SSS
                 </button>
             </div>
 

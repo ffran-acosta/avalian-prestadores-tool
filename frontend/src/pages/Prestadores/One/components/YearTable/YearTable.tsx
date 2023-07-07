@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Year, YearPage } from '../../../../../model';
 import ModalCreateYear from './components/ModalYearTable';
 import ModalEditValues from './components/ModalYearTableUpdate';
+import { oneYearNominalInterestRates } from '../../../../../util';
 
 const YearTable: React.FC<YearPage> = ({ years, prestador }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -49,7 +50,7 @@ const YearTable: React.FC<YearPage> = ({ years, prestador }) => {
               {year.meses.map((mes) => (
                 <td key={mes.mes}>{mes.valor}%</td>
               ))}
-              <td className="font-bold">1%</td>
+              <td className="font-bold">{oneYearNominalInterestRates(year.meses)}%</td>
               <td className="font-bold">1%</td>
             </tr>
           ))}
