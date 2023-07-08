@@ -54,7 +54,7 @@ const ReferentialValues = () => {
                             <td key={item.mes}>{ninetyPercent(item.valor)}%</td>
                         ))}
                         <td className="font-bold">{ninetyPercentArray(refValues)}%</td>
-                        <td className="font-bold"></td>
+                        <td className="font-bold">{ninetyPercent(oneYearEffectiveInterestRates(refValues))}%</td>
                     </tr>
                     <tr>
                         <td className="font-bold">92%</td>
@@ -62,6 +62,7 @@ const ReferentialValues = () => {
                             <td key={item.mes}>{ninetyTwoPercent(item.valor)}%</td>
                         ))}
                         <td className="font-bold">{ninetyTwoPercentArray(refValues)}%</td>
+                        <td className="font-bold">{ninetyTwoPercent(oneYearEffectiveInterestRates(refValues))}%</td>
                     </tr>
                 </tbody>
             </table>

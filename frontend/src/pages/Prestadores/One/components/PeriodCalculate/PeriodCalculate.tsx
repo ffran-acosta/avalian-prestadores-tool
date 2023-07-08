@@ -1,32 +1,43 @@
 import { useState } from 'react';
 import { YearPage } from '../../../../../model';
 
-
 const PeriodCalc: React.FC<YearPage> = ({ years }) => {
     const [startYear, setStartYear] = useState<number>(years[0]?.year || 0);
     const [startMonth, setStartMonth] = useState<string>(years[0]?.meses[0]?.mes || '');
     const [endYear, setEndYear] = useState<number>(years[0]?.year || 0);
     const [endMonth, setEndMonth] = useState<string>(years[0]?.meses[0]?.mes || '');
+    const [sumResult, setSumResult] = useState<{ sum: number; cumulativeSum: number }>({ sum: 0, cumulativeSum: 0 });
 
-    // Función para calcular la suma de los valores dentro del rango de meses seleccionado
-    const calculateSum = (): number => {
+    const calculateSum = () => {
         let sum = 0;
-
+        let cumulativeSum = 0;
         const startYearObj = years.find((year) => year.year === startYear);
         const endYearObj = years.find((year) => year.year === endYear);
-
         if (startYearObj && endYearObj) {
             const startMonthIndex = startYearObj.meses.findIndex((mes) => mes.mes === startMonth);
             const endMonthIndex = endYearObj.meses.findIndex((mes) => mes.mes === endMonth);
-
             if (startMonthIndex >= 0 && endMonthIndex >= 0) {
-                const selectedMonths = endYearObj.meses.slice(startMonthIndex, endMonthIndex + 1);
+                const selectedMonths = years.flatMap((year) => {
+                    if (year.year === startYear) {
+                        return year.meses.slice(startMonthIndex);
+                    } else if (year.year === endYear) {
+                        return year.meses.slice(0, endMonthIndex + 1);
+                    } else if (year.year > startYear && year.year < endYear) {
+                        return year.meses;
+                    }
+                    return [];
+                });
                 sum = selectedMonths.reduce((total, mes) => total + mes.valor, 0);
+                cumulativeSum = selectedMonths.reduce((total, mes) => {
+                    total += mes.valor;
+                    return total;
+                }, 0);
             }
         }
 
-        return sum;
+        setSumResult({ sum, cumulativeSum });
     };
+
     return (
         <div>
             <div className="flex justify-center">
@@ -101,9 +112,9 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
                 </div>
             </div>
 
-            {/* <button onClick={calculateSum}>Calcular suma</button> */}
-            <p className='text-lg underline bg-slate-300'>Total Lineal: {calculateSum()}%</p>
-            <p className='text-lg underline bg-slate-300'>Total Acumulado: ?? %</p>
+            <button onClick={calculateSum}>Calcular suma</button>
+            <p className='text-lg underline bg-slate-300'>Total Lineal: {sumResult.sum}%</p>
+            <p className='text-lg underline bg-slate-300'>Total Acumulado: {sumResult.cumulativeSum}%</p>
         </div>
     );
 };

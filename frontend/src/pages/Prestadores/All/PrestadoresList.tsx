@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Prestador } from '../../../model';
 import { Link } from 'react-router-dom';
-import { historicNominalInterestRates, historicEffectiveInterestRates } from '../../../util';
+import { lastYearCalculate, lastYearNominalInterestRate } from '../../../util';
 import { prestadoresRequest } from '../../../services';
 import ModalCrearPrestador from './components/Modal/CreatePrestador';
 
@@ -53,7 +53,7 @@ const PrestadoresList = () => {
                 />
                 <button
                     className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => setShowModal(true)} // Abre el modal al hacer clic en el botón
+                    onClick={() => setShowModal(true)} 
                 >
                     Nuevo Prestador
                 </button>
@@ -85,12 +85,8 @@ const PrestadoresList = () => {
                             </td>
                             <td className="p-4">{prestador.localidad}</td>
                             <td className="p-4">{prestador.tipo}</td>
-                            <td className="p-4 font-bold">
-                                1 %
-                            </td>
-                            <td className="p-4">
-                                1 %
-                            </td>
+                            <td className='font-bold'>{lastYearCalculate(prestador.years, 'nominal')}%</td>
+                            <td className='font-bold'>{lastYearCalculate(prestador.years, 'effective')}%</td>
                         </tr>
                     ))}
                 </tbody>
