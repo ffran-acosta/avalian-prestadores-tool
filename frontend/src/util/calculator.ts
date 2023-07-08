@@ -1,7 +1,7 @@
 import { Mes, Year } from "../model";
 
 // TNA -----------------------------------------------------------
-const nominalInterestRates = (percentages: number[]): number => {
+export const nominalInterestRates = (percentages: number[]): number => {
     const interestRate = percentages.reduce((acc, percentages) => acc + percentages, 0);
     return +interestRate.toFixed(2);
 };

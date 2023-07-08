@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { YearPage } from '../../../../../model';
+import { Mes, YearPage } from '../../../../../model';
+import { calculateCompoundInterest, nominalInterestRates } from '../../../../../util';
 
 const PeriodCalc: React.FC<YearPage> = ({ years }) => {
     const [startYear, setStartYear] = useState<number>(years[0]?.year || 0);
@@ -9,33 +10,29 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
     const [sumResult, setSumResult] = useState<{ sum: number; cumulativeSum: number }>({ sum: 0, cumulativeSum: 0 });
 
     const calculateSum = () => {
-        let sum = 0;
-        let cumulativeSum = 0;
         const startYearObj = years.find((year) => year.year === startYear);
         const endYearObj = years.find((year) => year.year === endYear);
         if (startYearObj && endYearObj) {
-            const startMonthIndex = startYearObj.meses.findIndex((mes) => mes.mes === startMonth);
-            const endMonthIndex = endYearObj.meses.findIndex((mes) => mes.mes === endMonth);
-            if (startMonthIndex >= 0 && endMonthIndex >= 0) {
-                const selectedMonths = years.flatMap((year) => {
-                    if (year.year === startYear) {
-                        return year.meses.slice(startMonthIndex);
-                    } else if (year.year === endYear) {
-                        return year.meses.slice(0, endMonthIndex + 1);
-                    } else if (year.year > startYear && year.year < endYear) {
-                        return year.meses;
+            const startMonthObj = startYearObj.meses.find((mes) => mes.mes === startMonth);
+            const endMonthObj = endYearObj.meses.find((mes) => mes.mes === endMonth);
+            if (startMonthObj && endMonthObj) {
+                const startIndex = startYearObj.meses.indexOf(startMonthObj);
+                const endIndex = endYearObj.meses.indexOf(endMonthObj);
+                const selectedMonths: Mes[] = [];
+                for (let i = startYearObj.year; i <= endYearObj.year; i++) {
+                    const yearObj = years.find((year) => year.year === i);
+                    if (yearObj) {
+                        const start = yearObj === startYearObj ? startIndex : 0;
+                        const end = yearObj === endYearObj ? endIndex + 1 : yearObj.meses.length;
+                        selectedMonths.push(...yearObj.meses.slice(start, end));
                     }
-                    return [];
-                });
-                sum = selectedMonths.reduce((total, mes) => total + mes.valor, 0);
-                cumulativeSum = selectedMonths.reduce((total, mes) => {
-                    total += mes.valor;
-                    return total;
-                }, 0);
+                }
+                const percentages = selectedMonths.map((mes) => mes.valor);
+                const totalLineal = nominalInterestRates(percentages);
+                const totalAcumulado = calculateCompoundInterest(percentages);
+                setSumResult({ sum: totalLineal, cumulativeSum: totalAcumulado });
             }
         }
-
-        setSumResult({ sum, cumulativeSum });
     };
 
     return (
