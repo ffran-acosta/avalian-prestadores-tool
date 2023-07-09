@@ -1,12 +1,12 @@
 import express from 'express';
 import { notasController, prestadorController, refValuesController, yearController } from '../controller';
 import { reqAuth } from '../middleware';
-import { prestadorValidations } from '../validations';
+import { validateCreatePrestador } from '../validations';
 const router = express.Router();
 
 // prestadores
 router.get('/all', reqAuth, prestadorController.getPrestadores);
-router.post('/create', reqAuth, prestadorValidations.validateCreatePrestador, prestadorController.createPrestador);
+router.post('/create', reqAuth, validateCreatePrestador, prestadorController.createPrestador);
 router.put('/update/:id', reqAuth, prestadorController.updatePrestador);
 router.delete('/delete/:id', reqAuth, prestadorController.deletePrestador);
 

@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { localDb } from '../database';
 import { Prestador } from '../models';
+import { prestadorExists } from '../utils';
 
 export const prestadorController = {
-
     getPrestadores: async (req: Request, res: Response) => {
         try {
             const userId = req.user.id;
             const prestadores = await localDb.any<Prestador>('SELECT * FROM prestadores WHERE user_id = $1', [userId]);
-            res.json(prestadores)
+            res.json(prestadores);
         } catch (error) {
             console.error('Error retrieving prestadores:', error);
             res.status(500).json({ error: 'Failed to retrieve prestadores' });
@@ -17,10 +17,18 @@ export const prestadorController = {
 
     createPrestador: async (req: Request, res: Response) => {
         try {
-            const newPrestador: Prestador = { ...req.body }
+            const newPrestador: Prestador = { ...req.body };
             await localDb.none(
                 'INSERT INTO prestadores (id, user_id, prestador, localidad, tipo, notas, years) VALUES ($1, $2, $3, $4, $5, $6, CAST($7 AS JSONB[]))',
-                [newPrestador.id, newPrestador.userId, newPrestador.prestador, newPrestador.localidad, newPrestador.tipo, newPrestador.notas, newPrestador.years]
+                [
+                    newPrestador.id,
+                    newPrestador.userId,
+                    newPrestador.prestador,
+                    newPrestador.localidad,
+                    newPrestador.tipo,
+                    newPrestador.notas,
+                    newPrestador.years,
+                ]
             );
             res.status(201).json({ message: 'Prestador created successfully' });
         } catch (error) {
@@ -34,15 +42,15 @@ export const prestadorController = {
             const prestadorId: string = req.params.id;
             const { prestador, localidad, tipo }: Partial<Prestador> = req.body;
 
-            const prestadorExists = await localDb.oneOrNone<Prestador>('SELECT * FROM prestadores WHERE id = $1', [prestadorId]);
-            if (!prestadorExists) {
+            const existingPrestador = await prestadorExists(prestadorId, req.user.id);
+            if (!existingPrestador) {
                 return res.status(404).json({ error: 'Prestador not found' });
             }
             const updatedPrestador: Prestador = {
-                ...prestadorExists,
-                prestador: prestador || prestadorExists.prestador,
-                localidad: localidad || prestadorExists.localidad,
-                tipo: tipo || prestadorExists.tipo,
+                ...existingPrestador,
+                prestador: prestador || existingPrestador.prestador,
+                localidad: localidad || existingPrestador.localidad,
+                tipo: tipo || existingPrestador.tipo,
             };
             await localDb.none(
                 'UPDATE prestadores SET prestador = $1, localidad = $2, tipo = $3 WHERE id = $4',
@@ -58,8 +66,9 @@ export const prestadorController = {
     deletePrestador: async (req: Request, res: Response) => {
         try {
             const prestadorId: string = req.params.id;
-            const prestadorExists = await localDb.oneOrNone<Prestador>('SELECT * FROM prestadores WHERE id = $1', [prestadorId]);
-            if (!prestadorExists) {
+
+            const prestador = await prestadorExists(prestadorId, req.user.id);
+            if (!prestador) {
                 return res.status(404).json({ error: 'Prestador not found' });
             }
             await localDb.none('DELETE FROM prestadores WHERE id = $1', [prestadorId]);
@@ -69,4 +78,4 @@ export const prestadorController = {
             res.status(500).json({ error: 'Failed to delete prestador' });
         }
     },
-}
+};

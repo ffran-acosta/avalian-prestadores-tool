@@ -3,7 +3,7 @@ import { localDb } from '../database';
 import { Mes } from '../models';
 
 export const refValuesController = {
-    getRefValues: async (req: Request, res: Response) => {
+    getRefValues: async (_req: Request, res: Response) => {
         try {
             const refValues = await localDb.any<Mes>('SELECT * FROM ref_values');
             res.json(refValues);

@@ -6,13 +6,12 @@ import { User } from '../models';
 import { encryptPassword, comparePasswords, generateJwtSecret } from '../utils';
 
 export const userController = {
-
     getUsers: async (_req: Request, res: Response) => {
         try {
-            const users = await localDb.any('SELECT * FROM users');
+            const users: User[] = await localDb.any('SELECT * FROM users');
             res.json(users);
         } catch (error) {
-            console.error('Error retrieving test:', error);
+            console.error('Error retrieving users:', error);
             res.status(500).json({ error: 'Failed to retrieve users' });
         }
     },
@@ -29,8 +28,8 @@ export const userController = {
 
     getUserById: async (req: Request, res: Response) => {
         try {
-            const { id } = req.params
-            const user = await localDb.one('SELECT * FROM users WHERE id = $1', id);
+            const { id } = req.params;
+            const user = await localDb.one<User>('SELECT * FROM users WHERE id = $1', id);
             res.json(user);
         } catch (error) {
             console.error('Error retrieving user:', error);
@@ -50,8 +49,8 @@ export const userController = {
                 return res.status(401).json({ error: 'Invalid password' });
             }
             const jwtSecret = generateJwtSecret();
-            const token: string = await jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: 60 * 60 * 24 });
-            res.json({ user, token })
+            const token: string = jwt.sign({ id: user.id, user: user.name }, jwtSecret, { expiresIn: '1d' });
+            res.json({ user, token });
         } catch (error) {
             console.error('Error during login:', error);
             res.status(500).json({ error: 'Failed to login' });
@@ -61,13 +60,12 @@ export const userController = {
     createUser: async (req: Request, res: Response) => {
         try {
             const { name, password, email } = req.body;
-            const hashedPassword = await encryptPassword(password)
-            const newUser: User = { name: name, password: hashedPassword, email: email };
-            const result = await localDb.one('INSERT INTO users(name, password, email) VALUES($1, $2, $3) RETURNING id', [
-                newUser.name,
-                newUser.password,
-                newUser.email,
-            ]);
+            const hashedPassword = await encryptPassword(password);
+            const newUser: User = { name, password: hashedPassword, email };
+            const result = await localDb.one<{ id: number }>(
+                'INSERT INTO users(name, password, email) VALUES($1, $2, $3) RETURNING id',
+                [newUser.name, newUser.password, newUser.email]
+            );
             newUser.id = result.id;
             res.json(result);
         } catch (error) {
@@ -85,10 +83,5 @@ export const userController = {
             console.error('Error deleting user:', error);
             res.status(500).json({ error: 'Failed to delete user' });
         }
-    }
-}
-
-
-
-
-
+    },
+};
