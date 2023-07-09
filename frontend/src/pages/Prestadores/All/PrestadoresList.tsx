@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Prestador } from '../../../model';
 import { Link } from 'react-router-dom';
-import { lastYearCalculate, lastYearNominalInterestRate } from '../../../util';
+import { lastYearCalculate } from '../../../util';
 import { prestadoresRequest } from '../../../services';
 import ModalCrearPrestador from './components/Modal/CreatePrestador';
 
