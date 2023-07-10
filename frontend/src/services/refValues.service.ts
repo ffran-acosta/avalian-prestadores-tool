@@ -2,13 +2,13 @@ import axios from "axios";
 import { getRequestConfig } from "../store";
 import { Mes } from "../model";
 
-const BASE_URL = 'http://localhost:3031';
+const apiUrl = import.meta.env.VITE_API_URL as string;
 
 export const getRefValuesRequest = async () => {
     try {
         const config = getRequestConfig();
         if (config) {
-            const response = await axios.get(`${BASE_URL}/api/prestadores/ref-values`, config);
+            const response = await axios.get(`${apiUrl}/api/prestadores/ref-values`, config);
             return response?.data;
         }
     } catch (error) {
@@ -20,7 +20,7 @@ export const updateRefValuesRequest = async (newValues: Mes[]) => {
     try {
         const config = getRequestConfig();
         if (config) {
-            const response = await axios.put(`${BASE_URL}/api/prestadores/update-ref-values`, newValues, config);
+            const response = await axios.put(`${apiUrl}/api/prestadores/update-ref-values`, newValues, config);
             return response?.data;
         }
     } catch (error) {

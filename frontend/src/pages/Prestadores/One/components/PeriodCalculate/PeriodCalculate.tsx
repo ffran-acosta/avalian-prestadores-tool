@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Mes, YearPage } from '../../../../../model';
 import { calculateCompoundInterest, nominalInterestRates } from '../../../../../util';
-import { standarBlueButton } from '../../../../../styles';
 
 const PeriodCalc: React.FC<YearPage> = ({ years }) => {
     const [startYear, setStartYear] = useState<number>(years[0]?.year || 0);
@@ -36,11 +35,13 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
         }
     };
 
+
     return (
-        <div>
-            <div className="flex justify-center">
-                <div className="flex items-center mr-4">
-                    <div>
+        <div className="flex flex-col items-center">
+            <div className="flex justify-between w-full mb-8">
+                <div className="flex flex-col items-center">
+                    <h2 className="text-2xl mb-2">DESDE:</h2>
+                    <div className="flex items-center">
                         <label htmlFor="startYear" className="mr-2 font-bold">AÑO:</label>
                         <select
                             id="startYear"
@@ -54,9 +55,7 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
                                 </option>
                             ))}
                         </select>
-                    </div>
 
-                    <div>
                         <label htmlFor="startMonth" className="mr-2 font-bold">MES:</label>
                         <select
                             id="startMonth"
@@ -74,8 +73,9 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
                     </div>
                 </div>
 
-                <div className="flex items-center">
-                    <div>
+                <div className="flex flex-col items-center">
+                    <h2 className="text-2xl mb-2">HASTA:</h2>
+                    <div className="flex items-center">
                         <label htmlFor="endYear" className="mr-2 font-bold">AÑO:</label>
                         <select
                             id="endYear"
@@ -89,9 +89,7 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
                                 </option>
                             ))}
                         </select>
-                    </div>
 
-                    <div>
                         <label htmlFor="endMonth" className="mr-2 font-bold">MES:</label>
                         <select
                             id="endMonth"
@@ -110,9 +108,17 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
                 </div>
             </div>
 
-            <button onClick={calculateSum} className={standarBlueButton}>Calcular suma</button>
-            <p className='text-lg underline bg-slate-300'>Total Lineal: {sumResult.sum}%</p>
-            <p className='text-lg underline bg-slate-300'>Total Acumulado: {sumResult.cumulativeSum}%</p>
+            <div className="flex items-center">
+                <button onClick={calculateSum} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
+                    Calcular Interés
+                </button>
+                {sumResult.sum !== 0 && (
+                    <div className="flex flex-row items-center ">
+                        <p className="mr-2 text-xl mb-2 bg-yellow-300 p-1 rounded-md">Total Lineal: {sumResult.sum}%</p>
+                        <p className="mr-2 text-xl mb-2 bg-yellow-300 p-1 rounded-md">Total Acumulado: {sumResult.cumulativeSum}%</p>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

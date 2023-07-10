@@ -3,7 +3,7 @@ import { Year, YearPage } from '../../../../../model';
 import ModalCreateYear from './components/ModalYearTable';
 import ModalEditValues from './components/ModalYearTableUpdate';
 import { oneYearEffectiveInterestRates, oneYearNominalInterestRates } from '../../../../../util';
-import { standarBlueButton } from '../../../../../styles';
+import { standarBlueButton, standarGreenButton } from '../../../../../styles';
 
 const YearTable: React.FC<YearPage> = ({ years, prestador }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -60,17 +60,18 @@ const YearTable: React.FC<YearPage> = ({ years, prestador }) => {
 
       <div className="flex w-full justify-evenly mt-4">
         <button
+          className={standarGreenButton}
+          onClick={handleAddYear}
+        >
+          Añadir Año
+        </button>
+        <button
           className={standarBlueButton}
           onClick={handleEditValues}
         >
           Editar Valores
         </button>
-        <button
-          className={standarBlueButton}
-          onClick={handleAddYear}
-        >
-          Añadir Año
-        </button>
+
       </div>
 
       {showCreateModal && (

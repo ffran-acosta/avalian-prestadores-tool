@@ -2,13 +2,13 @@ import axios from "axios";
 import { getRequestConfig, getUserId } from "../store";
 import { Prestador } from "../model";
 
-const BASE_URL = 'http://localhost:3031';
+const apiUrl = import.meta.env.VITE_API_URL as string;
 
 export const prestadoresRequest = async () => {
     try {
         const config = getRequestConfig();
         if (config) {
-            const response = await axios.get(`${BASE_URL}/api/prestadores/all`, config);
+            const response = await axios.get(`${apiUrl}/api/prestadores/all`, config);
             return response?.data;
         }
     } catch (error) {
@@ -23,7 +23,7 @@ export const createPrestadorRequest = async (prestador: Prestador) => {
         if (config && userId) {
             prestador.userId = userId;
             const response = await axios.post(
-                `${BASE_URL}/api/prestadores/create`,
+                `${apiUrl}/api/prestadores/create`,
                 prestador,
                 config
             );
@@ -39,7 +39,7 @@ export const updatePrestadorRequest = async (prestador: Prestador) => {
         const config = getRequestConfig();
         if (config) {
             const response = await axios.put(
-                `${BASE_URL}/api/prestadores/update/${prestador.id}`,
+                `${apiUrl}/api/prestadores/update/${prestador.id}`,
                 prestador,
                 config
             );
@@ -55,7 +55,7 @@ export const deletePrestadorRequest = async (prestadorId: string) => {
         const config = getRequestConfig();
         if (config) {
             const response = await axios.delete(
-                `${BASE_URL}/api/prestadores/delete/${prestadorId}`,
+                `${apiUrl}/api/prestadores/delete/${prestadorId}`,
                 config
             );
             return response?.data;
