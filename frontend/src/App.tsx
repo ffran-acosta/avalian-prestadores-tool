@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components';
-import { LoginPage, PrestadorDetail, PrestadoresList, RegisterPage, Profile } from './pages';
+import { LoginPage, PrestadorDetail, PrestadoresList, RegisterPage } from './pages';
 import { useStore } from './store';
 
 const App: React.FC = () => {
@@ -18,7 +18,6 @@ const App: React.FC = () => {
           <>
             <Route path="/prestadores" element={<PrestadoresList />} />
             <Route path="/prestadores/:id" element={<PrestadorDetail />} />
-            <Route path="/profile" element={<Profile />} />
           </>
         ) : null}
       </Routes>

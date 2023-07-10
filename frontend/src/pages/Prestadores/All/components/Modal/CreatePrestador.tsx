@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createPrestadorRequest } from '../../../../../services';
 import { Prestador, Year, Mes, ModalPage } from '../../../../../model';
+import { h2, modalLabel, standarBlueButton, standarGreenButton, standarRedButton } from '../../../../../styles';
 
 const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
     const [prestadorData, setPrestadorData] = useState<Prestador>({
@@ -66,11 +67,11 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
     return (
         <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
             <div className="bg-white p-4 rounded-lg">
-                <h2 className="text-xl font-bold mb-4">Crear Nuevo Prestador</h2>
-                <form className="grid grid-cols-2 gap-4">
+                <h2 className={h2}>Crear Nuevo Prestador</h2>
+                <form className="grid gap-4">
                     <div className="mb-4">
-                        <label className="block font-bold mb-1" htmlFor="id">
-                            ID
+                        <label className={modalLabel} htmlFor="id">
+                            ID:
                         </label>
                         <input
                             type="number"
@@ -82,8 +83,8 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block font-bold mb-1" htmlFor="prestador">
-                            Prestador
+                        <label className={modalLabel} htmlFor="prestador">
+                            Prestador:
                         </label>
                         <input
                             type="text"
@@ -95,8 +96,8 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block font-bold mb-1" htmlFor="localidad">
-                            Localidad
+                        <label className={modalLabel} htmlFor="localidad">
+                            Localidad:
                         </label>
                         <input
                             type="text"
@@ -108,8 +109,8 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block font-bold mb-1" htmlFor="tipo">
-                            Tipo
+                        <label className={modalLabel} htmlFor="tipo">
+                            Tipo:
                         </label>
                         <input
                             type="text"
@@ -125,7 +126,7 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                             {prestadorData.years.map((year, yearIndex) => (
                                 <React.Fragment key={yearIndex}>
                                     <div className="col-span-12">
-                                        <label className="block font-bold mb-1" htmlFor={`year-${yearIndex}`}>
+                                        <label className={modalLabel} htmlFor={`year-${yearIndex}`}>
                                             AÑO:
                                         </label>
                                         <input
@@ -139,7 +140,7 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                                     </div>
                                     {year.meses.map((mes, monthIndex) => (
                                         <div key={monthIndex} className="col-span-1">
-                                            <label className="block font-bold mb-1" htmlFor={`valor-${yearIndex}-${monthIndex}`}>
+                                            <label className={modalLabel} htmlFor={`valor-${yearIndex}-${monthIndex}`}>
                                                 {mes.mes}:
                                             </label>
                                             <input
@@ -155,11 +156,11 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                                 </React.Fragment>
                             ))}
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between mt-6">
                             <button
                                 type="button"
                                 onClick={handleAddYear}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                className={standarBlueButton}
                             >
                                 Agregar Año
                             </button>
@@ -169,14 +170,14 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                         <button
                             type="button"
                             onClick={onClose}
-                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            className={standarRedButton}
                         >
                             Cancelar
                         </button>
                         <button
                             type="button"
                             onClick={handleCrearPrestador}
-                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                            className={standarGreenButton}
                         >
                             Crear Prestador
                         </button>

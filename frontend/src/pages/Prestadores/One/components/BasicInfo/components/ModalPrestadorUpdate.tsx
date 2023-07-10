@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Prestador } from '../../../../../../model';
 import { updatePrestadorRequest, deletePrestadorRequest } from '../../../../../../services';
 import { useNavigate } from 'react-router-dom';
+import { h2, inputStyles, modalLabel, standarGreenButton, standarRedButton } from '../../../../../../styles';
 
 interface ModalEditPrestadorProps {
   prestador: Prestador;
@@ -47,64 +48,70 @@ const PrestadorUpdateModal: React.FC<ModalEditPrestadorProps> = ({ prestador, on
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
       <div className="bg-white p-4 rounded-lg max-w-4/5">
-        <h2 className="text-xl font-bold mb-4">Editar Prestador</h2>
-        <button
-          type="button"
-          onClick={handleDeletePrestador}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Eliminar
-        </button>
+        <h2 className={h2}>Editar Prestador</h2>
+        <div className='flex justify-center mb-5'>
+          <button
+            type="button"
+            onClick={handleDeletePrestador}
+            className={standarRedButton}
+          >
+            Eliminar
+          </button>
+        </div>
         <form>
           <div className="mb-4">
-            <label htmlFor="prestador">Prestador:</label>
+            <label className={modalLabel} htmlFor="prestador">Prestador:</label>
             <input
               type="text"
               id="prestador"
               name="prestador"
               value={editedPrestador.prestador}
               onChange={handleInputChange}
-              className="border border-gray-400 p-2 rounded-md w-full"
+              className={inputStyles}
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="localidad">Localidad:</label>
+            <label className={modalLabel} htmlFor="localidad">Localidad:</label>
             <input
               type="text"
               id="localidad"
               name="localidad"
               value={editedPrestador.localidad}
               onChange={handleInputChange}
-              className="border border-gray-400 p-2 rounded-md w-full"
+              className={inputStyles}
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="tipo">Tipo:</label>
+            <label className={modalLabel} htmlFor="tipo">Tipo:</label>
             <input
               type="text"
               id="tipo"
               name="tipo"
               value={editedPrestador.tipo}
               onChange={handleInputChange}
-              className="border border-gray-400 p-2 rounded-md w-full"
+              className={inputStyles}
             />
           </div>
-          <div className="flex justify-between">
+          <div>
             <div>
-              <button
-                type="button"
-                onClick={onClose}
-                className="mr-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                onClick={handleSaveChanges}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Guardar Cambios
-              </button>
+              <div>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className={standarRedButton}
+                >
+                  Cancelar
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={handleSaveChanges}
+                  className={standarGreenButton}
+                >
+                  Guardar Cambios
+                </button>
+              </div>
             </div>
           </div>
         </form>

@@ -67,11 +67,11 @@ const Register: React.FC = () => {
     };
 
     return (
-        <div className={`${digLogReg}`}>
-            <h2 className={`${h2}`}>REGISTRATE</h2>
+        <div className={digLogReg}>
+            <h2 className={h2}>REGISTRATE</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label htmlFor="username" className={`${label}`}>Usuario</label>
+                    <label htmlFor="username" className={label}>Usuario</label>
                     <input
                         type="text"
                         id="username"
@@ -82,18 +82,18 @@ const Register: React.FC = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="email" className={`${label}`}>Email</label>
+                    <label htmlFor="email" className={label}>Email</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
                         value={email}
                         onChange={handleInputChange}
-                        className={`${inputStyles}`}
+                        className={inputStyles}
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="password" className={`${label}`}>Contraseña</label>
+                    <label htmlFor="password" className={label}>Contraseña</label>
                     <div className="flex">
                         <input
                             type={showPassword ? 'text' : 'password'}
@@ -101,33 +101,33 @@ const Register: React.FC = () => {
                             name="password"
                             value={password}
                             onChange={handleInputChange}
-                            className={`${inputStyles}`}
+                            className={inputStyles}
                         />
                         <button
                             type="button"
                             onClick={handleTogglePasswordVisibility}
-                            className={`${standarGrayButton}`}
+                            className={standarGrayButton}
                         >
                             {showPassword ? 'Ocultar' : 'Mostrar'}
                         </button>
                     </div>
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="confirmPassword" className={`${label}`}>Confirma Contraseña</label>
+                    <label htmlFor="confirmPassword" className={label}>Confirma Contraseña</label>
                     <input
                         type="password"
                         id="confirmPassword"
                         name="confirmPassword"
                         value={confirmPassword}
                         onChange={handleInputChange}
-                        className={`${inputStyles}`}
+                        className={inputStyles}
                     />
                 </div>
-                {fieldError && <p className={`${errorMessage}`}>{fieldError}</p>}
+                {fieldError && <p className={errorMessage}>{fieldError}</p>}
                 <div className="flex justify-center">
                     <button
                         type="submit"
-                        className={`${standarBlueButton}`}
+                        className={standarBlueButton}
                     >
                         Confirmar Registro
                     </button>
@@ -136,7 +136,7 @@ const Register: React.FC = () => {
                     <span className={`${span}`}>Ya tenes cuenta?</span>
                     <Link
                         to="/login"
-                        className={`${standarGrayButton}`}
+                        className={standarGrayButton}
                     >
                         Log In
                     </Link>

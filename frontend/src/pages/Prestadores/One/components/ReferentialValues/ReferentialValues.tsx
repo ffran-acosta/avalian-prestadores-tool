@@ -3,6 +3,7 @@ import { getRefValuesRequest } from '../../../../../services/refValues.service';
 import { ninetyPercent, ninetyPercentArray, ninetyTwoPercent, ninetyTwoPercentArray, oneYearEffectiveInterestRates, oneYearNominalInterestRates } from '../../../../../util';
 import { Mes } from '../../../../../model';
 import ModalEditarValores from './components/ModalRefValues';
+import { standarBlueButton } from '../../../../../styles';
 
 
 const ReferentialValues = () => {
@@ -66,9 +67,9 @@ const ReferentialValues = () => {
                     </tr>
                 </tbody>
             </table>
-            <div className='flex w-full justify-center'>
+            <div className='flex w-full justify-center mt-2'>
                 <button
-                    className='mt-2 px-4 py-2 bg-blue-500 text-white rounded'
+                    className={standarBlueButton}
                     onClick={openModal}
                 >
                     Editar SSS

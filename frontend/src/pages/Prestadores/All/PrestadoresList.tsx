@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { lastYearCalculate } from '../../../util';
 import { prestadoresRequest } from '../../../services';
 import ModalCrearPrestador from './components/Modal/CreatePrestador';
+import { standarBlueButton } from '../../../styles';
 
 const PrestadoresList = () => {
     const [prestadores, setPrestadores] = useState<Prestador[]>([]);
@@ -49,10 +50,10 @@ const PrestadoresList = () => {
                     placeholder="Buscar por Nombre o ID"
                     value={filtro}
                     onChange={(e) => setFiltro(e.target.value)}
-                    className="p-2 border border-gray-800 rounded-md"
+                    className="p-2 border border-gray-800 rounded-md mr-4 w-1/3"
                 />
                 <button
-                    className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className={standarBlueButton}
                     onClick={() => setShowModal(true)} 
                 >
                     Nuevo Prestador
@@ -62,7 +63,7 @@ const PrestadoresList = () => {
 
             <table>
                 <thead className="text-center">
-                    <tr className="border border-gray-800 text-lg">
+                    <tr>
                         <th className="p-4">ID</th>
                         <th className="p-4">Prestador</th>
                         <th className="p-4">Localidad</th>
@@ -71,10 +72,10 @@ const PrestadoresList = () => {
                         <th className="p-4">Total Acumulado</th>
                     </tr>
                 </thead>
-                <tbody className="text-center border border-gray-800">
+                <tbody >
                     {prestadoresFiltrados.map((prestador) => (
-                        <tr className="border border-gray-800" key={prestador.id}>
-                            <td className="p-4">{prestador.id}</td>
+                        <tr key={prestador.id}>
+                            <td className="font-bold p-4">{prestador.id}</td>
                             <td className="p-4">
                                 <Link
                                     to={`/prestadores/${prestador.id}`}

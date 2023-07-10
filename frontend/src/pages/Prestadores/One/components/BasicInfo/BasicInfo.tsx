@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { PrestadorPage } from '../../../../../model';
 import { ModalPrestadorUpdate } from '..';
 import { lastYearCalculate } from '../../../../../util';
+import { standarBlueButton } from '../../../../../styles';
 
 const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
     const [showEditModal, setShowEditModal] = useState(false);
@@ -33,7 +34,7 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                         <td className='font-bold'>{lastYearCalculate(prestador.years, 'nominal')}%</td>
                         <td className='font-bold'>{lastYearCalculate(prestador.years, 'effective')}%</td>
                         <td>
-                            <button onClick={handleEditPrestador}>Editar Prestador</button>
+                            <button className={standarBlueButton} onClick={handleEditPrestador}>Editar Prestador</button>
                         </td>
                     </tr>
                 </tbody>

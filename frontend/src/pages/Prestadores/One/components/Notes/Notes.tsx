@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PrestadorPage } from '../../../../../model';
 import ModalCreateNotes from './components/ModalCreateNote';
 import ModalUpdateNotes from './components/ModalUpdateNotes';
+import { standarBlueButton } from '../../../../../styles';
 
 const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
   
@@ -38,15 +39,15 @@ const Notes: React.FC<PrestadorPage> = ({ prestador }) => {
 
       <div className='flex w-full justify-center'>
         <button
-          className='mt-2 mr-1 px-4 py-2 bg-blue-500 text-white rounded'
           onClick={openModalCrear}
+          className={standarBlueButton}
         >
           Crear Nota
         </button>
         {showEditButton && (
           <button
-            className='mt-2 ml-1 px-4 py-2 bg-blue-500 text-white rounded'
             onClick={openModalEdit}
+            className={standarBlueButton}
           >
             Editar
           </button>

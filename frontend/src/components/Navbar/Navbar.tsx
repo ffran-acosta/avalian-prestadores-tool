@@ -18,13 +18,9 @@ const Navbar = () => {
                 </div>
                 <ul className="flex space-x-4">
                     {isLoggedIn ? (
-                        // Sesión iniciada
                         <>
                             <li>
                                 <a href="/prestadores" className="text-white hover:text-gray-300">Listado Completo</a>
-                            </li>
-                            <li>
-                                <a href="/profile" className="text-white hover:text-gray-300">Perfil</a>
                             </li>
                             <li>
                                 <a href="/login" className="text-white hover:text-gray-300" onClick={handleLogout}>
@@ -33,7 +29,6 @@ const Navbar = () => {
                             </li>
                         </>
                     ) : (
-                        // Sesión no iniciada
                         <li>
                             <a href="/login" className="text-white hover:text-gray-300">Login</a>
                         </li>

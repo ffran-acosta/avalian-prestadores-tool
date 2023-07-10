@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mes, YearPage } from '../../../../../model';
 import { calculateCompoundInterest, nominalInterestRates } from '../../../../../util';
+import { standarBlueButton } from '../../../../../styles';
 
 const PeriodCalc: React.FC<YearPage> = ({ years }) => {
     const [startYear, setStartYear] = useState<number>(years[0]?.year || 0);
@@ -109,7 +110,7 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
                 </div>
             </div>
 
-            <button onClick={calculateSum}>Calcular suma</button>
+            <button onClick={calculateSum} className={standarBlueButton}>Calcular suma</button>
             <p className='text-lg underline bg-slate-300'>Total Lineal: {sumResult.sum}%</p>
             <p className='text-lg underline bg-slate-300'>Total Acumulado: {sumResult.cumulativeSum}%</p>
         </div>

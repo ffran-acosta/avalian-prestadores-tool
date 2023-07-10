@@ -56,22 +56,22 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className={`${digLogReg}`}>
-            <h2 className={`${h2}`}>LOGIN</h2>
+        <div className={digLogReg}>
+            <h2 className={h2}>LOGIN</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label htmlFor="username" className={`${label}`}>Usuario</label>
+                    <label htmlFor="username" className={label}>Usuario</label>
                     <input
                         type="text"
                         id="username"
                         name="username"
                         value={username}
                         onChange={handleInputChange}
-                        className={`${inputStyles}`}
+                        className={inputStyles}
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="password" className={`${label}`}>Contraseña</label>
+                    <label htmlFor="password" className={label}>Contraseña</label>
                     <div className="flex">
                         <input
                             type={showPassword ? 'text' : 'password'}
@@ -84,7 +84,7 @@ const Login: React.FC = () => {
                         <button
                             type="button"
                             onClick={handleToggleShowPassword}
-                            className={`${standarGrayButton}`}
+                            className={standarGrayButton}
                         >
                             {showPassword ? 'Ocultar' : 'Mostrar'}
                         </button>
@@ -96,15 +96,15 @@ const Login: React.FC = () => {
                     <Link to="#" className="text-blue-600 hover:underline text-sm">
                         Olvidaste tu contraseña?
                     </Link>
-                    <button className={`${standarBlueButton}`}>
+                    <button className={standarBlueButton}>
                         Login
                     </button>
                 </div>
                 <div className="flex items-center">
-                    <span className={`${span}`}>No tenes cuenta?</span>
+                    <span className={span}>No tenes cuenta?</span>
                     <Link
                         to="/signup"
-                        className={`${standarGrayButton}`}
+                        className={standarGrayButton}
                     >
                         Registrate
                     </Link>
