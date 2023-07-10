@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "buildback": "cd backend && npm install",
-    "backend": "cd backend && npm test"
+    "backend": "cd backend && npm test",
+    "server": "cd backend && npm start"
   },
   "keywords": [],
   "author": "",
