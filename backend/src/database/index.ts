@@ -1,1 +1,1 @@
-export { default as localDb } from './localPostgres-db';
+export { default as db } from './db';

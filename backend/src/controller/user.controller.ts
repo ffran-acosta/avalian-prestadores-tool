@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { localDb } from '../database';
+import { db } from '../database';
 import { User } from '../models';
 import { encryptPassword, comparePasswords, generateJwtSecret } from '../utils';
 
 export const userController = {
     getUsers: async (_req: Request, res: Response) => {
         try {
-            const users: User[] = await localDb.any('SELECT * FROM users');
+            const users: User[] = await db.any('SELECT * FROM users');
             res.json(users);
         } catch (error) {
             console.error('Error retrieving users:', error);
@@ -18,7 +18,7 @@ export const userController = {
 
     getUsersByEmail: async (_req: Request, res: Response) => {
         try {
-            const users = await localDb.any<{ name: string; email: string }>('SELECT name, email FROM users');
+            const users = await db.any<{ name: string; email: string }>('SELECT name, email FROM users');
             res.json(users);
         } catch (error) {
             console.error('Error retrieving users:', error);
@@ -29,7 +29,7 @@ export const userController = {
     getUserById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            const user = await localDb.one<User>('SELECT * FROM users WHERE id = $1', id);
+            const user = await db.one<User>('SELECT * FROM users WHERE id = $1', id);
             res.json(user);
         } catch (error) {
             console.error('Error retrieving user:', error);
@@ -40,7 +40,7 @@ export const userController = {
     login: async (req: Request, res: Response) => {
         try {
             const { name, password } = req.body;
-            const user = await localDb.oneOrNone<User>('SELECT * FROM users WHERE name = $1', [name]);
+            const user = await db.oneOrNone<User>('SELECT * FROM users WHERE name = $1', [name]);
             if (!user) {
                 return res.status(404).json({ error: 'User not found' });
             }
@@ -62,7 +62,7 @@ export const userController = {
             const { name, password, email } = req.body;
             const hashedPassword = await encryptPassword(password);
             const newUser: User = { name, password: hashedPassword, email };
-            const result = await localDb.one<{ id: number }>(
+            const result = await db.one<{ id: number }>(
                 'INSERT INTO users(name, password, email) VALUES($1, $2, $3) RETURNING id',
                 [newUser.name, newUser.password, newUser.email]
             );
@@ -77,7 +77,7 @@ export const userController = {
     deleteUser: async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            await localDb.none('DELETE FROM users WHERE id = $1', id);
+            await db.none('DELETE FROM users WHERE id = $1', id);
             res.sendStatus(204);
         } catch (error) {
             console.error('Error deleting user:', error);

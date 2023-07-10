@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { localDb } from '../database';
+import { db } from '../database';
 import { Year } from '../models';
 import { formatYearDb, getDefaultYear, prestadorExists } from '../utils';
 
@@ -14,7 +14,7 @@ export const yearController = {
             }
             const newYearObject: Year = formatYearDb(year);
             const updatedYears: Year[] = [...prestador.years, newYearObject];
-            await localDb.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
+            await db.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
             res.status(201).json({ message: 'Year created successfully' });
         } catch (error) {
             console.error('Error creating year:', error);
@@ -30,7 +30,7 @@ export const yearController = {
             if (!prestador) {
                 return res.status(404).json({ error: 'Prestador not found' });
             }
-            await localDb.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
+            await db.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
             res.status(200).json({ message: 'Years updated successfully' });
         } catch (error) {
             console.error('Error updating years:', error);
@@ -51,7 +51,7 @@ export const yearController = {
                 const defaultYear = getDefaultYear();
                 updatedYears = [defaultYear];
             }
-            await localDb.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
+            await db.none('UPDATE prestadores SET years = $1::jsonb[] WHERE id = $2', [updatedYears, prestadorId]);
             res.status(200).json({ message: 'Year deleted successfully', years: updatedYears });
         } catch (error) {
             console.error('Error deleting year:', error);

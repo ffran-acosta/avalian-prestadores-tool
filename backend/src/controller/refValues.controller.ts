@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { localDb } from '../database';
+import { db } from '../database';
 import { Mes } from '../models';
 
 export const refValuesController = {
     getRefValues: async (_req: Request, res: Response) => {
         try {
-            const refValues = await localDb.any<Mes>('SELECT * FROM ref_values');
+            const refValues = await db.any<Mes>('SELECT * FROM ref_values');
             res.json(refValues);
         } catch (error) {
             console.error('Error retrieving tabla data:', error);
@@ -17,7 +17,7 @@ export const refValuesController = {
         try {
             const updatedValues: Mes[] = req.body;
             const updatedValuesQuery = updatedValues.map((value) => `('${value.mes}', ${value.valor})`).join(',');
-            await localDb.none(`
+            await db.none(`
                 INSERT INTO ref_values (mes, valor)
                 VALUES ${updatedValuesQuery}
                 ON CONFLICT (mes)

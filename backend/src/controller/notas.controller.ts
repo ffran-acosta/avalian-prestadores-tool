@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { localDb } from '../database';
+import { db } from '../database';
 import { Prestador } from '../models';
 import { prestadorExists } from '../utils';
 
@@ -13,7 +13,7 @@ export const notasController = {
                 return res.status(404).json({ error: 'Prestador not found' });
             }
             prestador.notas.push(nota);
-            await localDb.none('UPDATE prestadores SET notas = $1 WHERE id = $2', [prestador.notas, prestadorId]);
+            await db.none('UPDATE prestadores SET notas = $1 WHERE id = $2', [prestador.notas, prestadorId]);
             res.status(201).json({ message: 'Nota created successfully' });
         } catch (error) {
             console.error('Error creating nota:', error);
@@ -35,7 +35,7 @@ export const notasController = {
                 return res.status(400).json({ error: 'Invalid nota index' });
             }
             notas[notaIndex] = newNota;
-            await localDb.none('UPDATE prestadores SET notas = $1 WHERE id = $2', [notas, prestadorId]);
+            await db.none('UPDATE prestadores SET notas = $1 WHERE id = $2', [notas, prestadorId]);
             res.json({ message: 'Nota updated successfully' });
         } catch (error) {
             console.error('Error updating nota:', error);
@@ -56,7 +56,7 @@ export const notasController = {
                 return res.status(400).json({ error: 'Invalid nota index' });
             }
             notas.splice(notaIndex, 1);
-            await localDb.none('UPDATE prestadores SET notas = $1 WHERE id = $2', [notas, prestadorId]);
+            await db.none('UPDATE prestadores SET notas = $1 WHERE id = $2', [notas, prestadorId]);
             res.json({ message: 'Nota deleted successfully' });
         } catch (error) {
             console.error('Error deleting nota:', error);
