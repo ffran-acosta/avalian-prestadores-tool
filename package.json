@@ -4,14 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd client && pnpm install && cd .. && cd server && pnpm install",
-    "build2": "if-env TYPE=server && (cd server && pnpm install) || (cd client && pnpm install)",
-    "server": "cd backend && pnpm test",
-    "client": "cd client && pnpm dev",
-    "server2": "nodemon ./sever/index.js",
-    "client2": "cd cliend && pnpm start"
+    "buildback": "cd backend && pnpm install",
+    "backend": "cd backend && pnpm test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
 }
+
