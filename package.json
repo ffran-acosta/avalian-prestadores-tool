@@ -1,0 +1,17 @@
+{
+  "name": "avalian-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd client && pnpm install && cd .. && cd server && pnpm install",
+    "build2": "if-env TYPE=server && (cd server && pnpm install) || (cd client && pnpm install)",
+    "server": "cd server && pnpm test",
+    "client": "cd client && pnpm dev",
+    "server2": "nodemon ./sever/index.js",
+    "client2": "cd cliend && pnpm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
