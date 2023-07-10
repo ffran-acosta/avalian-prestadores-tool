@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "buildback": "cd backend && pnpm install",
-    "backend": "cd backend && pnpm test"
+    "buildback": "cd backend && npm install",
+    "backend": "cd backend && npm test"
   },
   "keywords": [],
   "author": "",
