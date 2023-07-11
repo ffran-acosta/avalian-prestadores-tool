@@ -32,10 +32,10 @@ const PrestadorDetail = () => {
   return (
     <div className="flex justify-center mt-10 flex-wrap w-full">
       <div className="flex w-full mt-4 justify-center">
-        <BasicInfo prestador={prestador} />
+        <ReferentialValues />
       </div>
       <div className="flex w-full mt-4 justify-center">
-        <ReferentialValues />
+        <BasicInfo prestador={prestador} />
       </div>
       <div className="flex w-full mt-4 justify-center">
         <YearTable prestador={prestador} years={prestador.years} />

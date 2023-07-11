@@ -78,4 +78,5 @@ export const prestadorController = {
             res.status(500).json({ error: 'Failed to delete prestador' });
         }
     },
+
 };

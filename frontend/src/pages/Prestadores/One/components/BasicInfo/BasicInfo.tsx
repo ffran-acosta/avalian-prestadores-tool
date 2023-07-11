@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { PrestadorPage } from '../../../../../model';
 import { ModalPrestadorUpdate } from '..';
-import { lastYearCalculate } from '../../../../../util';
 import { standarBlueButton } from '../../../../../styles';
 
 const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
@@ -17,22 +16,18 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Prestador</th>
-                        <th>Localidad</th>
-                        <th>Tipo</th>
-                        <th>Total Lineal</th>
-                        <th>Total Acumulado</th>
+                        <th>PRESTADOR</th>
+                        <th>LOCALIDAD</th>
+                        <th>TIPO</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr key={prestador.id}>
                         <td>{prestador.id}</td>
-                        <td>{prestador.prestador}</td>
+                        <td className='text-red-500 text-transform: uppercase'>{prestador.prestador}</td>
                         <td>{prestador.localidad}</td>
                         <td>{prestador.tipo}</td>
-                        <td className='font-bold'>{lastYearCalculate(prestador.years, 'nominal')}%</td>
-                        <td className='font-bold'>{lastYearCalculate(prestador.years, 'effective')}%</td>
                         <td>
                             <button className={standarBlueButton} onClick={handleEditPrestador}>Editar Prestador</button>
                         </td>

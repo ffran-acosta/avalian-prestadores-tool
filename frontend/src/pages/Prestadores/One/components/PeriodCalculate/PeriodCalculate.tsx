@@ -37,7 +37,7 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
 
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center border bg-gray-300 p-5 rounded-md mt-9">
             <div className="flex justify-between w-full mb-8">
                 <div className="flex flex-col items-center">
                     <h2 className="text-2xl mb-2">DESDE:</h2>
@@ -114,8 +114,8 @@ const PeriodCalc: React.FC<YearPage> = ({ years }) => {
                 </button>
                 {sumResult.sum !== 0 && (
                     <div className="flex flex-row items-center ">
-                        <p className="mr-2 text-xl mb-2 bg-yellow-300 p-1 rounded-md">Total Lineal: {sumResult.sum}%</p>
-                        <p className="mr-2 text-xl mb-2 bg-yellow-300 p-1 rounded-md">Total Acumulado: {sumResult.cumulativeSum}%</p>
+                        <p className="mr-2 text-xl mb-2 bg-yellow-300 p-1 rounded-md font-bold">Total Lineal: <span className='text-red-500'>{sumResult.sum}%</span></p>
+                        <p className="mr-2 text-xl mb-2 bg-yellow-300 p-1 rounded-md font-bold">Total Acumulado: <span className='text-red-500'>{sumResult.cumulativeSum}%</span></p>
                     </div>
                 )}
             </div>

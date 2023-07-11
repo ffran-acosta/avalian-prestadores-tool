@@ -36,12 +36,13 @@ const YearTable: React.FC<YearPage> = ({ years, prestador }) => {
       <table>
         <thead>
           <tr>
-            <th>Año</th>
+            <th>AÑO</th>
             {years[0].meses.map((mes) => (
               <th key={mes.mes}>{mes.mes}</th>
             ))}
-            <th>Tot Lineal</th>
-            <th>Tot Acum.</th>
+            <th>TOT. LINEAL</th>
+            <th>TOT. ACUM.</th>
+            <th>DIFERENCIA</th>
           </tr>
         </thead>
         <tbody>
@@ -69,7 +70,7 @@ const YearTable: React.FC<YearPage> = ({ years, prestador }) => {
           className={standarBlueButton}
           onClick={handleEditValues}
         >
-          Editar Valores
+          Editar %
         </button>
 
       </div>

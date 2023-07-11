@@ -32,33 +32,33 @@ const ReferentialValues = () => {
             <table>
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>INCREMENTOS</th>
                         {refValues.map((item) => (
                             <th key={item.mes}>{item.mes}</th>
                         ))}
-                        <th>Tot Lineal</th>
-                        <th>Tot Acum.</th>
+                        <th>TOT. LINEAL</th>
+                        <th>TOT. ACUM.</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="font-bold">SSS</td>
+                    <tr >
+                        <td className="font-bold  text-blue-500">S.S. SALUD</td>
                         {refValues.map((item) => (
-                            <td key={item.mes}>{item.valor}%</td>
+                            <td className=' text-blue-500' key={item.mes}>{item.valor}%</td>
                         ))}
-                        <td className="font-bold">{oneYearNominalInterestRates(refValues)}%</td>
-                        <td className="font-bold">{oneYearEffectiveInterestRates(refValues)}%</td>
+                        <td className="font-bold  text-blue-500">{oneYearNominalInterestRates(refValues)}%</td>
+                        <td className="font-bold text-blue-500 text-">{oneYearEffectiveInterestRates(refValues)}%</td>
                     </tr>
                     <tr>
-                        <td className="font-bold">90%</td>
+                        <td className="font-bold text-green-500">A. PREST: 90%</td>
                         {refValues.map((item) => (
-                            <td key={item.mes}>{ninetyPercent(item.valor)}%</td>
+                            <td className='text-green-500' key={item.mes}>{ninetyPercent(item.valor)}%</td>
                         ))}
-                        <td className="font-bold">{ninetyPercentArray(refValues)}%</td>
-                        <td className="font-bold">{ninetyPercent(oneYearEffectiveInterestRates(refValues))}%</td>
+                        <td className="font-bold text-green-500">{ninetyPercentArray(refValues)}%</td>
+                        <td className="font-bold text-green-500">{ninetyPercent(oneYearEffectiveInterestRates(refValues))}%</td>
                     </tr>
                     <tr>
-                        <td className="font-bold">92%</td>
+                        <td className="font-bold">U.A.S. 92%</td>
                         {refValues.map((item) => (
                             <td key={item.mes}>{ninetyTwoPercent(item.valor)}%</td>
                         ))}
