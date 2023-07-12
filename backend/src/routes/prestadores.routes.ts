@@ -1,5 +1,5 @@
 import express from 'express';
-import { notasController, prestadorController, refValuesController, yearController } from '../controller';
+import { csvController, notasController, prestadorController, refValuesController, yearController } from '../controller';
 import { reqAuth } from '../middleware';
 import { validateCreatePrestador } from '../validations';
 const router = express.Router();
@@ -24,6 +24,8 @@ router.delete('/delete-year/:id/:year', reqAuth, yearController.deleteYear);
 router.get('/ref-values', reqAuth, refValuesController.getRefValues);
 router.put('/update-ref-values', reqAuth, refValuesController.updateRefValues);
 
+//import/export
+router.get('/exportToCSV', reqAuth, csvController.exportToCSV);
 
 export default router;
 

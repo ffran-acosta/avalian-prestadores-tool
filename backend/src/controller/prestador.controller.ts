@@ -6,7 +6,7 @@ import { prestadorExists } from '../utils';
 export const prestadorController = {
     getPrestadores: async (req: Request, res: Response) => {
         try {
-            const userId = req.user.id;
+            const userId: string = req.user.id;
             const prestadores = await db.any<Prestador>('SELECT * FROM prestadores WHERE user_id = $1', [userId]);
             res.json(prestadores);
         } catch (error) {
@@ -79,4 +79,11 @@ export const prestadorController = {
         }
     },
 
+    exportToExcel: async (req: Request, res: Response) => {
+        try {
+        } catch (error) {
+            console.error('Error al exportar a Excel:', error);
+            res.status(500).json({ error: 'Error al exportar a Excel' });
+        }
+    }
 };

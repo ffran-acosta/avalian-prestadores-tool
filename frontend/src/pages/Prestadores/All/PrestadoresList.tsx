@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Prestador } from '../../../model';
 import { Link } from 'react-router-dom';
 import { lastYearCalculate } from '../../../util';
-import { prestadoresRequest } from '../../../services';
+import { exportToCSV, prestadoresRequest } from '../../../services';
 import ModalCrearPrestador from './components/Modal/CreatePrestador';
 import { standarBlueButton } from '../../../styles';
 
@@ -42,6 +42,15 @@ const PrestadoresList = () => {
     }, [filtro, prestadores]);
 
 
+    const handleExportClick = async () => {
+        try {
+            const year = "2023"; 
+            await exportToCSV(year);
+        } catch (error) {
+            console.error('Error al exportar a CSV:', error);
+        }
+    };
+
     return (
         <div className="flex justify-center mt-10 flex-wrap">
             <div className="flex w-full justify-center mb-4">
@@ -57,6 +66,12 @@ const PrestadoresList = () => {
                     onClick={() => setShowModal(true)} 
                 >
                     Nuevo Prestador
+                </button>
+                <button
+                    className={standarBlueButton}
+                    onClick={handleExportClick}
+                >
+                    Exportar
                 </button>
             </div>
             {showModal && <ModalCrearPrestador onClose={handleModalClose} />}
