@@ -8,7 +8,7 @@ export const exportXLSX = async () => {
     try {
         const config = getRequestConfig();
         if (config) {
-            const response = await axios.get(`${apiUrl}/api/prestadores/exportPrestadores/`, {
+            const response = await axios.get(`${apiUrl}/api/prestadores/export-prestadores/`, {
                 ...config,
                 responseType: 'blob'
             });

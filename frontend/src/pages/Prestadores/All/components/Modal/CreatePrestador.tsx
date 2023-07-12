@@ -156,7 +156,7 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                                 </React.Fragment>
                             ))}
                         </div>
-                        <div className="flex justify-between mt-6">
+                        {/* <div className="flex justify-between mt-6">
                             <button
                                 type="button"
                                 onClick={handleAddYear}
@@ -164,7 +164,7 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
                             >
                                 Agregar Año
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="col-span-2 flex justify-between">
                         <button

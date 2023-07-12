@@ -9,7 +9,6 @@ export const prestadoresRequest = async () => {
         const config = getRequestConfig();
         if (config) {
             const response = await axios.get(`${apiUrl}/api/prestadores/all`, config);
-            console.log(response?.data);
             return response?.data;
         }
     } catch (error) {
