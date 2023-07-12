@@ -1,7 +1,7 @@
 import { Prestador } from '../models';
 
 export const generateCSV = async (prestadores: Prestador[]) => {
-    let csvData = 'ID,PRESTADOR,LOCALIDAD,TIPO,AÑO,'; // Encabezados fijos
+    let csvData = 'ID,PRESTADOR,LOCALIDAD,TIPO,YEAR,';
     const meses = [
         'ENE',
         'FEB',
@@ -17,11 +17,9 @@ export const generateCSV = async (prestadores: Prestador[]) => {
         'DIC',
     ];
     csvData += meses.join(',') + '\n';
-
     prestadores.forEach((prestador) => {
         let primerFila = true;
         let filaBase = `${prestador.id},${prestador.prestador},${prestador.localidad},${prestador.tipo},`;
-
         prestador.years.forEach((year) => {
             if (primerFila) {
                 csvData += filaBase;

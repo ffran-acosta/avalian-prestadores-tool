@@ -25,7 +25,7 @@ router.get('/ref-values', reqAuth, refValuesController.getRefValues);
 router.put('/update-ref-values', reqAuth, refValuesController.updateRefValues);
 
 //import/export
-router.get('/exportToCSV', reqAuth, csvController.exportToCSV);
+router.get('/exportPrestadores', reqAuth, csvController.exportCSV);
 
 export default router;
 

@@ -4,7 +4,7 @@ import { Prestador } from '../models';
 import { generateCSV } from '../utils';
 
 export const csvController = {
-    exportToCSV: async (req: Request, res: Response) => {
+    exportCSV: async (req: Request, res: Response) => {
         try {
             const userId: string = req.user.id;
             const prestadores = await db.any<Prestador>('SELECT * FROM prestadores WHERE user_id = $1', [userId]);

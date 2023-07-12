@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Prestador } from '../../../model';
 import { Link } from 'react-router-dom';
 import { lastYearCalculate } from '../../../util';
-import { exportToCSV, prestadoresRequest } from '../../../services';
+import { exportXLSX, prestadoresRequest } from '../../../services';
 import ModalCrearPrestador from './components/Modal/CreatePrestador';
 import { standarBlueButton } from '../../../styles';
 
@@ -44,7 +44,7 @@ const PrestadoresList = () => {
 
     const handleExportClick = async () => {
         try {
-            await exportToCSV();
+            await exportXLSX();
         } catch (error) {
             console.error('Error al exportar a CSV:', error);
         }
