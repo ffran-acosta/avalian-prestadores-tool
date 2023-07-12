@@ -7,7 +7,7 @@ export const exportToCSV = async () => {
     try {
         const config = getRequestConfig();
         if (config) {
-            const response = await axios.get(`${apiUrl}/api/prestadores/exportToCSV`, config);
+            const response = await axios.get(`${apiUrl}/api/prestadores/exportToCSV/`, config);
             const url = window.URL.createObjectURL(new Blob([response.data], { type: 'text/csv' }));
             const link = document.createElement('a');
             link.href = url;

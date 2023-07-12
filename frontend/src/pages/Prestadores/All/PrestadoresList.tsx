@@ -44,8 +44,7 @@ const PrestadoresList = () => {
 
     const handleExportClick = async () => {
         try {
-            const year = "2023"; 
-            await exportToCSV(year);
+            await exportToCSV();
         } catch (error) {
             console.error('Error al exportar a CSV:', error);
         }

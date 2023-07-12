@@ -8,9 +8,7 @@ export const csvController = {
         try {
             const userId: string = req.user.id;
             const prestadores = await db.any<Prestador>('SELECT * FROM prestadores WHERE user_id = $1', [userId]);
-            console.log(prestadores);
             const csvData = await generateCSV(prestadores);
-
             res.setHeader('Content-Type', 'text/csv');
             res.setHeader('Content-Disposition', 'attachment; filename=Prestadores.csv');
             res.send(csvData);
