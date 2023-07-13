@@ -7,7 +7,7 @@
     "buildback": "cd backend && npm install",
     "backend": "cd backend && npm test",
     "server": "cd backend && npm start",
-    "buildfront": "cd frontend && npm install",
+    "buildfront": "cd frontend && npm start",
     "frontend": "cd frontend && npm run dev"
   },
   "keywords": [],
