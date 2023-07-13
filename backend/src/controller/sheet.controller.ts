@@ -3,7 +3,7 @@ import { db } from '../database';
 import { Prestador } from '../models';
 import { generateCSV } from '../utils';
 
-export const csvController = {
+export const sheetController = {
     exportCSV: async (req: Request, res: Response) => {
         try {
             const userId: string = req.user.id;
@@ -16,5 +16,8 @@ export const csvController = {
             console.error('Error al exportar a CSV:', error);
             res.status(500).json({ error: 'Error al exportar a CSV' });
         }
+    },
+
+    importXSLX: async (req: Request, res: Response) => {
     }
 };

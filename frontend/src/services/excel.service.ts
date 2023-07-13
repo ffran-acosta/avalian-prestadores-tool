@@ -35,3 +35,22 @@ export const exportXLSX = async () => {
         throw error;
     }
 };
+
+export const importXSLX = async (file: File) => {
+    try {
+        const config = getRequestConfig();
+        if (config) {
+            const formData = new FormData();
+            formData.append("file", file);
+            const response = await axios.post(
+                `${apiUrl}/api/prestadores/import-prestadores/`,
+                formData,
+                config
+            );
+            return response;
+        }
+    } catch (error) {
+        console.error("Error al importar:", error);
+        throw error;
+    }
+};

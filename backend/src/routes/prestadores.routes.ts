@@ -1,5 +1,5 @@
 import express from 'express';
-import { csvController, notasController, prestadorController, refValuesController, yearController } from '../controller';
+import { sheetController, notasController, prestadorController, refValuesController, yearController } from '../controller';
 import { reqAuth } from '../middleware';
 import { validateCreatePrestador } from '../validations';
 const router = express.Router();
@@ -25,7 +25,8 @@ router.get('/ref-values', reqAuth, refValuesController.getRefValues);
 router.put('/update-ref-values', reqAuth, refValuesController.updateRefValues);
 
 //import/export
-router.get('/export-prestadores', reqAuth, csvController.exportCSV);
+router.get('/export-prestadores', reqAuth, sheetController.exportCSV);
+router.post('/import-prestadores', reqAuth, sheetController.importXSLX);
 
 export default router;
 
