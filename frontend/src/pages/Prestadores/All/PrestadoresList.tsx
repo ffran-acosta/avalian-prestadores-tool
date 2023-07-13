@@ -12,9 +12,10 @@ const PrestadoresList = () => {
     const [filtro, setFiltro] = useState<string>("");
     const [prestadoresFiltrados, setPrestadoresFiltrados] = useState<Prestador[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [isLoading, setIsLoading] = useState(false); // Estado para controlar el círculo de carga
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleModalClose = () => {
+        console.log(prestadorSeleccionado);
         setShowModal(false);
     };
 

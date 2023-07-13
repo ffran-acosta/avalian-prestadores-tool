@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createPrestadorRequest } from '../../../../../services';
-import { Prestador, Year, Mes, ModalPage } from '../../../../../model';
-import { h2, modalLabel, standarBlueButton, standarGreenButton, standarRedButton } from '../../../../../styles';
+import { Prestador, ModalPage } from '../../../../../model';
+import { h2, modalLabel, standarGreenButton, standarRedButton } from '../../../../../styles';
 
 const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
     const [prestadorData, setPrestadorData] = useState<Prestador>({
@@ -55,14 +55,14 @@ const ModalCrearPrestador: React.FC<ModalPage> = ({ onClose }) => {
 
     
     
-    const handleAddYear = () => {
-        const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-        setPrestadorData((prevData) => {
-            const newMonths: Mes[] = months.map((month) => ({ mes: month, valor: 0 }));
-            const newYear: Year = { year: 0, meses: newMonths };
-            return { ...prevData, years: [...prevData.years, newYear] };
-        });
-    };
+    // const handleAddYear = () => {
+    //     const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+    //     setPrestadorData((prevData) => {
+    //         const newMonths: Mes[] = months.map((month) => ({ mes: month, valor: 0 }));
+    //         const newYear: Year = { year: 0, meses: newMonths };
+    //         return { ...prevData, years: [...prevData.years, newYear] };
+    //     });
+    // };
 
     return (
         <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
