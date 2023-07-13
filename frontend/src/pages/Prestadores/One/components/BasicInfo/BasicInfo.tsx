@@ -20,6 +20,7 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                         <th>LOCALIDAD</th>
                         <th>TIPO</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,9 @@ const BasicInfo: React.FC<PrestadorPage> = ({ prestador }) => {
                         <td>{prestador.tipo}</td>
                         <td>
                             <button className={standarBlueButton} onClick={handleEditPrestador}>Editar Prestador</button>
+                        </td>
+                        <td>
+                            <button className={standarBlueButton} onClick={handleEditPrestador}>Notas</button>
                         </td>
                     </tr>
                 </tbody>

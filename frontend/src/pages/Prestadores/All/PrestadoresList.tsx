@@ -67,74 +67,79 @@ const PrestadoresList = () => {
     };
 
     return (
-        <div className="flex justify-center mt-10 flex-wrap">
+        <div className="flex w-full justify-center mt-10 flex-wrap">
             <div className="flex w-full justify-center mb-4">
-                <input
-                    type="text"
-                    placeholder="Buscar por Nombre o ID"
-                    value={filtro}
-                    onChange={(e) => setFiltro(e.target.value)}
-                    className="p-2 border border-gray-800 rounded-md mr-4 w-1/3"
-                />
-                <button
-                    className={standarBlueButton}
-                    onClick={() => setShowModal(true)}
-                >
-                    Nuevo Prestador
-                </button>
-                <button
-                    className={standarBlueButton}
-                    onClick={handleExportClick}
-                    disabled={isLoading}
-                >
-                    Exportar
-                </button>
-                <label className={standarBlueButton}>
-                    Importar
+                <div className='flex w-1/4'>
                     <input
-                        type="file"
-                        style={{ display: 'none' }}
-                        accept=".xlsx"
-                        onChange={handleImportClick}
-                        disabled={isLoading} 
+                        type="text"
+                        placeholder="Buscar por Nombre o ID"
+                        value={filtro}
+                        onChange={(e) => setFiltro(e.target.value)}
+                        className="w-full p-2 border border-gray-800 rounded-md mr-4"
                     />
-                </label>
+                </div>
+                <div className='flex w-1/4 justify-between'>
+                    <button
+                        className={standarBlueButton}
+                        onClick={() => setShowModal(true)}
+                    >
+                        Nuevo Prestador
+                    </button>
+                    <button
+                        className={standarBlueButton}
+                        onClick={handleExportClick}
+                        disabled={isLoading} 
+                    >
+                        Exportar
+                    </button>
+                    <label className={standarBlueButton}>
+                        Importar
+                        <input
+                            type="file"
+                            style={{ display: 'none' }}
+                            accept=".xlsx"
+                            onChange={handleImportClick}
+                            disabled={isLoading}
+                        />
+                    </label>
+                </div>
             </div>
             {showModal && <ModalCrearPrestador onClose={handleModalClose} />}
 
             {isLoading && <div>Círculo de carga...</div>} 
-
-            <table>
-                <thead className="text-center">
-                    <tr>
-                        <th className="p-4">ID</th>
-                        <th className="p-4">Prestador</th>
-                        <th className="p-4">Localidad</th>
-                        <th className="p-4">Tipo</th>
-                        <th className="p-4">Total Lineal</th>
-                        <th className="p-4">Total Acumulado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {prestadoresFiltrados.map((prestador) => (
-                        <tr key={prestador.id}>
-                            <td className="font-bold p-4">{prestador.id}</td>
-                            <td className="p-4">
-                                <Link
-                                    to={`/prestadores/${prestador.id}`}
-                                    onClick={() => setPrestadorSeleccionado(prestador)}
-                                >
-                                    {prestador.prestador}
-                                </Link>
-                            </td>
-                            <td className="p-4">{prestador.localidad}</td>
-                            <td className="p-4">{prestador.tipo}</td>
-                            <td className="font-bold">{lastYearCalculate(prestador.years, 'nominal')}%</td>
-                            <td className="font-bold">{lastYearCalculate(prestador.years, 'effective')}%</td>
+            <div className='flex w-full justify-center'>
+                <table>
+                    <thead className="text-center">
+                        <tr>
+                            <th className="p-4">ID</th>
+                            <th className="p-4">Prestador</th>
+                            <th className="p-4">Localidad</th>
+                            <th className="p-4">Tipo</th>
+                            <th className="p-4">Total Lineal</th>
+                            <th className="p-4">Total Acumulado</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {prestadoresFiltrados.map((prestador) => (
+                            <tr key={prestador.id}>
+                                <td className="font-bold p-4">{prestador.id}</td>
+                                <td className="p-4">
+                                    <Link
+                                        to={`/prestadores/${prestador.id}`}
+                                        onClick={() => setPrestadorSeleccionado(prestador)}
+                                    >
+                                        {prestador.prestador}
+                                    </Link>
+                                </td>
+                                <td className="p-4">{prestador.localidad}</td>
+                                <td className="p-4">{prestador.tipo}</td>
+                                <td className="font-bold">{lastYearCalculate(prestador.years, 'nominal')}%</td>
+                                <td className="font-bold">{lastYearCalculate(prestador.years, 'effective')}%</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
