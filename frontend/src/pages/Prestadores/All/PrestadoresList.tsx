@@ -12,6 +12,8 @@ const PrestadoresList = () => {
     const [filtro, setFiltro] = useState<string>("");
     const [prestadoresFiltrados, setPrestadoresFiltrados] = useState<Prestador[]>([]);
     const [showModal, setShowModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); // Estado para controlar el círculo de carga
+
     const handleModalClose = () => {
         setShowModal(false);
     };
@@ -53,13 +55,17 @@ const PrestadoresList = () => {
         const file = event.target.files?.[0];
         try {
             if (file) {
+                setIsLoading(true);
                 await importXSLX(file);
                 obtenerDatosPrestadores();
+                setIsLoading(false); 
             }
         } catch (error) {
             console.error('Error al importar el archivo XLSX:', error);
+            setIsLoading(false); 
         }
     };
+
     return (
         <div className="flex justify-center mt-10 flex-wrap">
             <div className="flex w-full justify-center mb-4">
@@ -79,6 +85,7 @@ const PrestadoresList = () => {
                 <button
                     className={standarBlueButton}
                     onClick={handleExportClick}
+                    disabled={isLoading}
                 >
                     Exportar
                 </button>
@@ -89,10 +96,13 @@ const PrestadoresList = () => {
                         style={{ display: 'none' }}
                         accept=".xlsx"
                         onChange={handleImportClick}
+                        disabled={isLoading} 
                     />
                 </label>
             </div>
             {showModal && <ModalCrearPrestador onClose={handleModalClose} />}
+
+            {isLoading && <div>Círculo de carga...</div>} 
 
             <table>
                 <thead className="text-center">
@@ -130,54 +140,3 @@ const PrestadoresList = () => {
 };
 
 export default PrestadoresList;
-
-
-// import { exportXLSX, importXSLX } from '../../../services';
-// import { standarBlueButton } from '../../../styles';
-
-// const PrestadoresList = () => {
-
-//     const handleExportClick = async () => {
-//         try {
-//             await exportXLSX();
-//         } catch (error) {
-//             console.error('Error al exportar a CSV:', error);
-//         }
-//     };
-
-//     const handleImportClick = async () => {
-//         try {
-//             await importXSLX();
-//         } catch (error) {
-//             console.error('Error al importar XSLX:', error);
-//         }
-//     };
-
-//     return (
-//         <div className="flex justify-center mt-10 flex-wrap">
-//             <div className="flex w-full justify-center mb-4">
-//                 <button
-//                     className={standarBlueButton}
-//                     onClick={handleExportClick}
-//                 >
-//                     Exportar
-//                 </button>
-//                 <button
-//                     className={standarBlueButton}
-//                     onClick={handleImportClick}
-//                 >
-//                     Importar
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default PrestadoresList;
-
-// estoy trabajando en un proyecto que cuenta con frontend(react con typescript) y backend(nodejs con typescript) 
-// quiero desarrollar una funcionalidad para cargar datos a la base de datos que tengo en postgres cargando una planilla las columnas de la planilla son las siguientes:
-// ID	PRESTADOR	LOCALIDAD	TIPO	YEAR	ENE	FEB	MAR	ABR	MAY	JUN	JUL	AGO	SEP	OCT	NOV	DIC
-// aclaro que en cada prestador puede contener mas de una fila de años con  sus 12 valores en los meses, osea que entre prestadores puede haber celdas de id prestador localidad y tipo en blanco.
-// te voy a mostrar el codigo que tengo: la vista de react primero a la que le quiero dar la funcionalidad, la request.service que hace la llamada al backend, el controllador del backend, modelo del backend, y tambien un controllador que tengo en otro archivo que carga prestadores a la abse que tal vez se puede utilizar.entendiste todo ?
-
