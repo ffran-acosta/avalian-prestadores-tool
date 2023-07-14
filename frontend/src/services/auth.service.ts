@@ -1,7 +1,9 @@
 import axios from "axios";
 import { User } from "../model";
+import { urlTest } from ".";
 
-const apiUrl = import.meta.env.VITE_API_URL as string;
+// const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = urlTest
 
 export const loginRequest = async (name: string, password: string) => {
     return await axios.post(`${apiUrl}/users/auth/login`, {

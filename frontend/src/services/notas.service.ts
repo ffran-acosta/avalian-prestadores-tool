@@ -1,7 +1,10 @@
 import axios from "axios";
 import { getRequestConfig } from "../store";
 
-const apiUrl = import.meta.env.VITE_API_URL as string;
+import { urlTest } from ".";
+
+// const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = urlTest
 
 export const createNotaRequest = async (prestadorId: number, nota: string) => {
     try {

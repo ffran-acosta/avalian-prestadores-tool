@@ -1,0 +1,1 @@
+export const urlTest = 'https://centro-gestion.up.railway.app'
