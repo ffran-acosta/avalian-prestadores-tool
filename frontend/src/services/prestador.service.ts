@@ -2,16 +2,13 @@ import axios from "axios";
 import { getRequestConfig, getUserId } from "../store";
 import { Prestador } from "../model";
 
-import { urlTest } from ".";
-
 // const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrl = urlTest
 
 export const prestadoresRequest = async () => {
     try {
         const config = getRequestConfig();
         if (config) {
-            const response = await axios.get(`${apiUrl}/api/prestadores/all`, config);
+            const response = await axios.get(`https://centro-gestion.up.railway.app/api/prestadores/all`, config);
             return response?.data;
         }
     } catch (error) {
@@ -26,7 +23,7 @@ export const createPrestadorRequest = async (prestador: Prestador) => {
         if (config && userId) {
             prestador.userId = userId;
             const response = await axios.post(
-                `${apiUrl}/api/prestadores/create`,
+                `https://centro-gestion.up.railway.app/api/prestadores/create`,
                 prestador,
                 config
             );
@@ -42,7 +39,7 @@ export const updatePrestadorRequest = async (prestador: Prestador) => {
         const config = getRequestConfig();
         if (config) {
             const response = await axios.put(
-                `${apiUrl}/api/prestadores/update/${prestador.id}`,
+                `https://centro-gestion.up.railway.app/api/prestadores/update/${prestador.id}`,
                 prestador,
                 config
             );
@@ -58,7 +55,7 @@ export const deletePrestadorRequest = async (prestadorId: string) => {
         const config = getRequestConfig();
         if (config) {
             const response = await axios.delete(
-                `${apiUrl}/api/prestadores/delete/${prestadorId}`,
+                `https://centro-gestion.up.railway.app/api/prestadores/delete/${prestadorId}`,
                 config
             );
             return response?.data;

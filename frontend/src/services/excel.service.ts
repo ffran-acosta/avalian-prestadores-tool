@@ -2,16 +2,13 @@ import axios from "axios";
 import { getRequestConfig } from "../store";
 import { convertToXLSX } from "../util";
 
-import { urlTest } from ".";
-
 // const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrl = urlTest
 
 export const exportXLSX = async () => {
     try {
         const config = getRequestConfig();
         if (config) {
-            const response = await axios.get(`${apiUrl}/api/prestadores/export-prestadores/`, {
+            const response = await axios.get(`https://centro-gestion.up.railway.app/api/prestadores/export-prestadores/`, {
                 ...config,
                 responseType: 'blob'
             });
@@ -46,7 +43,7 @@ export const importXSLX = async (file: File) => {
             const formData = new FormData();
             formData.append("file", file);
             const response = await axios.post(
-                `${apiUrl}/api/prestadores/import-prestadores/`,
+                `https://centro-gestion.up.railway.app/api/prestadores/import-prestadores/`,
                 formData,
                 config
             );

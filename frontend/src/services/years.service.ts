@@ -2,14 +2,14 @@ import axios from "axios";
 import { getRequestConfig } from "../store";
 import { Year } from "../model";
 
-const apiUrl = import.meta.env.VITE_API_URL as string;
+// const apiUrl = import.meta.env.VITE_API_URL as string;
 
 export const createYearRequest = async (prestadorId: string, year: number) => {
     try {
         const config = getRequestConfig();
         if (config) {
             const response = await axios.post(
-                `${apiUrl}/api/prestadores/create-year/${prestadorId}`,
+                `https://centro-gestion.up.railway.app/api/prestadores/create-year/${prestadorId}`,
                 { year },
                 config
             );
@@ -25,7 +25,7 @@ export const updateYearsRequest = async (prestadorId: string, years: Year[]) => 
         const config = getRequestConfig();
         if (config) {
             const response = await axios.put(
-                `${apiUrl}/api/prestadores/update-years/${prestadorId}`,
+                `https://centro-gestion.up.railway.app/api/prestadores/update-years/${prestadorId}`,
                 { years },
                 config
             );
@@ -41,7 +41,7 @@ export const deleteYearRequest = async (prestadorId: string, year: number) => {
         const config = getRequestConfig();
         if (config) {
             const response = await axios.delete(
-                `${apiUrl}/api/prestadores/delete-year/${prestadorId}/${year}`,
+                `https://centro-gestion.up.railway.app/api/prestadores/delete-year/${prestadorId}/${year}`,
                 config
             );
             return response?.data;
